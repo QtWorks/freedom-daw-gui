@@ -1,19 +1,19 @@
-MusicRecorder--TrackHeader {
+freedom_daw--TrackHeader {
 }
 
-MusicRecorder--MainWindow {
+freedom_daw--MainWindow {
 	background-color: "#494d4d";
 }
 
-MusicRecorder--AudioPanel {
+freedom_daw--AudioPanel {
 	background-color: "#666b62";
 }
 
-MusicRecorder--TrackHeader {
+freedom_daw--TrackHeader {
 	background-color: "#666b62";
 	border-radius: 10px;
 }
 
-MusicRecorder--TrackHeader QLabel {
+freedom_daw--TrackHeader QLabel {
 	color: "#f1bf84";
 }
