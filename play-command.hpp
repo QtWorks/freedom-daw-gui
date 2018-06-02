@@ -15,34 +15,31 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "audio-panel.hpp"
+#ifndef FREEDOM_DAW_PLAY_COMMAND_HPP
+#define FREEDOM_DAW_PLAY_COMMAND_HPP
 
-#include "play-button.hpp"
-#include "record-button.hpp"
-
-#include <QGridLayout>
+#include "command.hpp"
 
 namespace freedom_daw {
 
-AudioPanel::AudioPanel(QWidget *parent) : QFrame(parent) {
-
-	playButton = new PlayButton(this);
-	recordButton = new RecordButton(this);
-
-	connect(playButton, &PlayButton::NewCommand, this, &AudioPanel::OnCommand);
-	connect(recordButton, &RecordButton::NewCommand, this, &AudioPanel::OnCommand);
-
-	layout = new QGridLayout(this);
-	layout->addWidget(playButton,   0, 0, 1, 1);
-	layout->addWidget(recordButton, 0, 1, 1, 1);
-}
-
-AudioPanel::~AudioPanel() {
-
-}
-
-void AudioPanel::OnCommand(const Command &command) {
-	emit NewCommand(command);
-}
+/// Used to tell the audio driver to
+/// begin playing the project audio.
+class PlayCommand final : public Command {
+public:
+	/// Default constructor.
+	PlayCommand() noexcept;
+	/// Default deconstructor.
+	~PlayCommand();
+	/// Returns the enumeration value indicating
+	/// that this is a play command.
+	/// @returns Always returns @ref CommandType::Play.
+	CommandType GetType() const noexcept override;
+	/// Writes the command to a JSON object.
+	/// @param jsonObject The JSON object to
+	/// write the command to.
+	void Write(QJsonObject &jsonObject) const override;
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_PLAY_COMMAND_HPP

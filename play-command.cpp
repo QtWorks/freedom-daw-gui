@@ -15,34 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "audio-panel.hpp"
+#include "play-command.hpp"
 
-#include "play-button.hpp"
-#include "record-button.hpp"
-
-#include <QGridLayout>
+#include <QJsonObject>
 
 namespace freedom_daw {
 
-AudioPanel::AudioPanel(QWidget *parent) : QFrame(parent) {
-
-	playButton = new PlayButton(this);
-	recordButton = new RecordButton(this);
-
-	connect(playButton, &PlayButton::NewCommand, this, &AudioPanel::OnCommand);
-	connect(recordButton, &RecordButton::NewCommand, this, &AudioPanel::OnCommand);
-
-	layout = new QGridLayout(this);
-	layout->addWidget(playButton,   0, 0, 1, 1);
-	layout->addWidget(recordButton, 0, 1, 1, 1);
-}
-
-AudioPanel::~AudioPanel() {
+PlayCommand::PlayCommand() noexcept {
 
 }
 
-void AudioPanel::OnCommand(const Command &command) {
-	emit NewCommand(command);
+PlayCommand::~PlayCommand() {
+
+}
+
+CommandType PlayCommand::GetType() const noexcept {
+	return CommandType::Play;
+}
+
+void PlayCommand::Write(QJsonObject &jsonObject) const {
+	jsonObject["command"] = "play";
 }
 
 } // namespace freedom_daw

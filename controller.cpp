@@ -82,10 +82,12 @@ void Controller::OnCommand(const Command &command) {
 	driver->Write(command);
 
 	switch (command.GetType()) {
+	case CommandType::DeleteTrack:
+		break;
 	case CommandType::NewTrack:
 		ReadNewTrackResponse();
 		break;
-	case CommandType::DeleteTrack:
+	case CommandType::Play:
 		break;
 	case CommandType::RecordStart:
 		break;

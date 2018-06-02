@@ -25,10 +25,12 @@ namespace freedom_daw {
 /// Lists the possible derived
 /// classes of the command class.
 enum class CommandType {
-	/// Used when creating a new track.
-	NewTrack,
 	/// Used when deleting a track.
 	DeleteTrack,
+	/// Used when creating a new track.
+	NewTrack,
+	/// Used to start playing audio.
+	Play,
 	/// Used to start recording.
 	RecordStart,
 	/// Used to stop recording.

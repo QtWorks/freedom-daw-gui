@@ -25,6 +25,7 @@ class QGridLayout;
 namespace freedom_daw {
 
 class Command;
+class PlayButton;
 class RecordButton;
 
 /// Responsible for containing the audio control buttons.
@@ -49,6 +50,8 @@ signals:
 	/// @param command The command to emit.
 	void NewCommand(const Command &command);
 private:
+	/// Signals to the application to start playing audio.
+	PlayButton *playButton;
 	/// Signals to the application to start recording audio.
 	RecordButton *recordButton;
 	/// The layout for the buttons on the audio panel.
