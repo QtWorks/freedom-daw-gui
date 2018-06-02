@@ -1,0 +1,19 @@
+MusicRecorder--TrackHeader {
+}
+
+MusicRecorder--MainWindow {
+	background-color: "#494d4d";
+}
+
+MusicRecorder--AudioPanel {
+	background-color: "#666b62";
+}
+
+MusicRecorder--TrackHeader {
+	background-color: "#666b62";
+	border-radius: 10px;
+}
+
+MusicRecorder--TrackHeader QLabel {
+	color: "#f1bf84";
+}
