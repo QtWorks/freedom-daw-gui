@@ -15,16 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "track-body.hpp"
+#ifndef FREEDOM_DAW_RECORD_START_COMMAND_HPP
+#define FREEDOM_DAW_RECORD_START_COMMAND_HPP
+
+#include "command.hpp"
 
 namespace freedom_daw {
 
-TrackBody::TrackBody(QWidget *parent) : QFrame(parent) {
-
-}
-
-TrackBody::~TrackBody() {
-
-}
+class RecordStartCommand final : public Command {
+public:
+	RecordStartCommand();
+	~RecordStartCommand();
+	CommandType GetType() const noexcept override;
+	void Write(QJsonObject &jsonObject) const override;
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_RECORD_START_COMMAND_HPP

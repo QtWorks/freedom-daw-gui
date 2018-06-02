@@ -87,6 +87,10 @@ void Controller::OnCommand(const Command &command) {
 		break;
 	case CommandType::DeleteTrack:
 		break;
+	case CommandType::RecordStart:
+		break;
+	case CommandType::RecordStop:
+		break;
 	}
 }
 

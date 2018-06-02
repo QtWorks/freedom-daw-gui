@@ -17,24 +17,78 @@
 
 #include "record-button.hpp"
 
+#include "record-start-command.hpp"
+#include "record-stop-command.hpp"
+
+#include <QGraphicsBlurEffect>
 #include <QPainter>
+
+#include <algorithm>
 
 namespace freedom_daw {
 
-RecordButton::RecordButton(QWidget *parent) : QPushButton(parent) {
+RecordButton::RecordButton(QWidget *parent) : QAbstractButton(parent) {
 
+	circleColor = Qt::red;
+
+	blurEffect = new QGraphicsBlurEffect(this);
+	blurEffect->setEnabled(false);
+	blurEffect->setBlurRadius(50);
+
+	connect(this, &QAbstractButton::toggled, this, &RecordButton::OnToggled);
+
+	setCheckable(true);
 }
 
 RecordButton::~RecordButton() {
 
 }
 
+void RecordButton::SetCircleColor(const QColor &color) {
+	circleColor = color;
+}
+
+QSize RecordButton::minimumSizeHint() const {
+	return QSize(50, 50);
+}
+
+void RecordButton::OnToggled(bool state) {
+	if (state) {
+		RecordStartCommand recordStartCommand;
+		emit NewCommand(recordStartCommand);
+	} else {
+		RecordStopCommand recordStopCommand;
+		emit NewCommand(recordStopCommand);
+	}
+}
+
 void RecordButton::paintEvent(QPaintEvent *) {
 
-	QPainter painter(this);
-	//painter.save();
-	painter.drawText(QPoint(0, 0), "Test");
-	//painter.restore();
+	QColor currentCircleColor(circleColor);
+
+	if (!isChecked()) {
+		currentCircleColor.setAlphaF(0.25);
+		blurEffect->setEnabled(false);
+	} else {
+		blurEffect->setEnabled(true);
+	}
+
+	QPainter painter;
+	painter.begin(this);
+	painter.setPen(Qt::NoPen);
+
+	// Draw the background
+
+	// Draw the inner circle.
+	auto radius = std::min(height(), width()) / 2;
+	auto xSize = radius * 2;
+	auto ySize = radius * 2;
+	auto xOffset = (width() / 2) - (xSize / 2);
+	auto yOffset = (height() / 2) - (ySize / 2);
+	painter.setBrush(currentCircleColor);
+	painter.drawEllipse(xOffset, yOffset, xSize, ySize);
+
+	painter.end();
 }
 
 } // namespace freedom_daw

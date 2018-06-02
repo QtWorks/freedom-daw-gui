@@ -24,7 +24,7 @@
 
 namespace freedom_daw {
 
-Track::Track(QWidget *parent) : QWidget(parent) {
+Track::Track(QWidget *parent) : QFrame(parent) {
 
 	id = 0;
 

@@ -25,6 +25,7 @@ class QGridLayout;
 namespace freedom_daw {
 
 class AudioPanel;
+class Command;
 class TrackManager;
 
 /// Contains all the child widgets in
@@ -42,6 +43,16 @@ public:
 	/// @param trackID The ID of the newly
 	/// created track.
 	void AddTrack(unsigned int trackID);
+signals:
+	/// Emitted when either the track manager
+	/// or audio panel triggers a new command.
+	/// @param command The command that was trigged.
+	void NewCommand(const Command &command);
+protected:
+	/// Called when either the track manager or
+	/// the audio panel triggers a new command.
+	/// @param command The command that was trigged.
+	void OnCommand(const Command &command);
 private:
 	/// A pointer to the audio controls panel.
 	AudioPanel *audioPanel;

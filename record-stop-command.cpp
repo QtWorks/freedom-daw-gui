@@ -15,16 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "track-body.hpp"
+#include "record-stop-command.hpp"
+
+#include <QJsonObject>
 
 namespace freedom_daw {
 
-TrackBody::TrackBody(QWidget *parent) : QFrame(parent) {
+RecordStopCommand::RecordStopCommand() {
 
 }
 
-TrackBody::~TrackBody() {
+RecordStopCommand::~RecordStopCommand() {
 
+}
+
+CommandType RecordStopCommand::GetType() const noexcept {
+	return CommandType::RecordStop;
+}
+
+void RecordStopCommand::Write(QJsonObject &jsonObject) const {
+	jsonObject["command"] = "record-stop";
 }
 
 } // namespace freedom_daw

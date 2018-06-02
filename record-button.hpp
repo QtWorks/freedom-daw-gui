@@ -18,14 +18,20 @@
 #ifndef FREEDOM_DAW_RECORD_BUTTON_HPP
 #define FREEDOM_DAW_RECORD_BUTTON_HPP
 
-#include <QPushButton>
+#include <QAbstractButton>
+#include <QColor>
+
+class QGraphicsBlurEffect;
 
 namespace freedom_daw {
 
+class Command;
+
 /// Created to allow the user a
 /// way to begin recording audio.
-class RecordButton final : public QPushButton {
+class RecordButton final : public QAbstractButton {
 	Q_OBJECT
+	Q_PROPERTY(QColor circleColor WRITE SetCircleColor)
 public:
 	/// Default constructor.
 	/// @param parent A pointer to
@@ -33,6 +39,26 @@ public:
 	RecordButton(QWidget *parent);
 	/// Default deconstructor.
 	~RecordButton();
+	/// Sets the color of the inner circle
+	/// of the record button. This is usually
+	/// a shade of the color red.
+	/// @param color The color to assign the inner
+	/// circle in the record button.
+	void SetCircleColor(const QColor &color);
+	/// Returns the minimum recommended size for the
+	/// record button.
+	/// @returns The minimum recommended button size.
+	QSize minimumSizeHint() const override;
+signals:
+	/// Emitted when the record button either gets
+	/// checked or unchecked.
+	/// @param command The command emitted from the button.
+	void NewCommand(const Command &command);
+protected slots:
+	/// Used to handle when the button changes state.
+	/// This function emits a command based on the new
+	/// state of the button.
+	void OnToggled(bool state);
 protected:
 	/// An override of the paint event.
 	/// This override is used to draw the
@@ -40,6 +66,12 @@ protected:
 	/// @param paintEvent A pointer to the
 	/// paint event information class.
 	void paintEvent(QPaintEvent *paintEvent) override;
+private:
+	/// The color of the inner circle.
+	QColor circleColor;
+	/// A pointer to the blur effect, which
+	/// takes place while the button is checked.
+	QGraphicsBlurEffect *blurEffect;
 };
 
 } // namespace freedom_daw

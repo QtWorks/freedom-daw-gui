@@ -24,6 +24,7 @@ class QGridLayout;
 
 namespace freedom_daw {
 
+class Command;
 class RecordButton;
 
 /// Responsible for containing the audio control buttons.
@@ -35,6 +36,18 @@ public:
 	AudioPanel(QWidget *parent);
 	/// Default deconstructor
 	~AudioPanel();
+public slots:
+	/// Used for connecting to new command signals
+	/// from the buttons in the audio panel. All this
+	/// function does is relay the command to the parent
+	/// class.
+	/// @param command The command received.
+	void OnCommand(const Command &command);
+signals:
+	/// Emitted when a control on the audio
+	/// panel triggers a command.
+	/// @param command The command to emit.
+	void NewCommand(const Command &command);
 private:
 	/// Signals to the application to start recording audio.
 	RecordButton *recordButton;

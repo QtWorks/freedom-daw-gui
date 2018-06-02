@@ -25,11 +25,13 @@ namespace freedom_daw {
 MainWindow::MainWindow() {
 
 	menuBar = new MenuBar(this);
-	connect(menuBar, &MenuBar::NewCommand, this, &MainWindow::OnCommand);
 	setMenuBar(menuBar);
 
 	centralWidget = new CentralWidget(this);
 	setCentralWidget(centralWidget);
+
+	connect(menuBar, &MenuBar::NewCommand, this, &MainWindow::OnCommand);
+	connect(centralWidget, &CentralWidget::NewCommand, this, &MainWindow::OnCommand);
 
 	setWindowTitle(tr("Music Recorder"));
 }

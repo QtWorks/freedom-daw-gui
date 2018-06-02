@@ -18,11 +18,11 @@
 #ifndef FREEDOM_DAW_TRACK_BODY_HPP
 #define FREEDOM_DAW_TRACK_BODY_HPP
 
-#include <QWidget>
+#include <QFrame>
 
 namespace freedom_daw {
 
-class TrackBody final : public QWidget {
+class TrackBody final : public QFrame {
 	Q_OBJECT
 public:
 	TrackBody(QWidget *parent = nullptr);

@@ -28,6 +28,8 @@ CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent) {
 
 	audioPanel = new AudioPanel(this);
 
+	connect(audioPanel, &AudioPanel::NewCommand, this, &CentralWidget::OnCommand);
+
 	trackManager = new TrackManager(this);
 
 	layout = new QGridLayout(this);
@@ -47,6 +49,10 @@ CentralWidget::~CentralWidget() {
 
 void CentralWidget::AddTrack(unsigned int trackID) {
 	trackManager->AddTrack(trackID);
+}
+
+void CentralWidget::OnCommand(const Command &command) {
+	emit NewCommand(command);
 }
 
 } // namespace freedom_daw

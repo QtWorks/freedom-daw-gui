@@ -18,7 +18,7 @@
 #ifndef FREEDOM_DAW_TRACK_HPP
 #define FREEDOM_DAW_TRACK_HPP
 
-#include <QWidget>
+#include <QFrame>
 
 class QString;
 class QHBoxLayout;
@@ -31,7 +31,7 @@ class TrackManager;
 
 /// Represents an audio track
 /// contained within the track manager.
-class Track final : public QWidget {
+class Track final : public QFrame {
 	Q_OBJECT
 public:
 	/// Default constructor.

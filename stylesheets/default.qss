@@ -9,11 +9,19 @@ freedom_daw--AudioPanel {
 	background-color: "#666b62";
 }
 
+freedom_daw--Track {
+}
+
 freedom_daw--TrackHeader {
-	background-color: "#666b62";
 	border-radius: 10px;
+	background-color: "#666b62";
 }
 
 freedom_daw--TrackHeader QLabel {
 	color: "#f1bf84";
+}
+
+freedom_daw--TrackBody {
+	border-radius: 10px;
+	background-color: "#666b62";
 }

@@ -28,7 +28,11 @@ enum class CommandType {
 	/// Used when creating a new track.
 	NewTrack,
 	/// Used when deleting a track.
-	DeleteTrack
+	DeleteTrack,
+	/// Used to start recording.
+	RecordStart,
+	/// Used to stop recording.
+	RecordStop
 };
 
 /// Used to represent a command to be

@@ -27,12 +27,18 @@ AudioPanel::AudioPanel(QWidget *parent) : QFrame(parent) {
 
 	recordButton = new RecordButton(this);
 
+	connect(recordButton, &RecordButton::NewCommand, this, &AudioPanel::OnCommand);
+
 	layout = new QGridLayout(this);
 	layout->addWidget(recordButton, 0, 0, 1, 1);
 }
 
 AudioPanel::~AudioPanel() {
 
+}
+
+void AudioPanel::OnCommand(const Command &command) {
+	emit NewCommand(command);
 }
 
 } // namespace freedom_daw
