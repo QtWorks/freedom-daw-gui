@@ -26,7 +26,7 @@ class QVBoxLayout;
 
 namespace freedom_daw {
 
-class Knob : public QWidget {
+class Knob final : public QWidget {
 	Q_OBJECT
 public:
 	/// Default constructor.

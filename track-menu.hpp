@@ -24,7 +24,7 @@ namespace freedom_daw {
 
 class Command;
 
-class TrackMenu : public QMenu {
+class TrackMenu final : public QMenu {
 	Q_OBJECT
 public:
 	TrackMenu(QWidget *parent = nullptr);

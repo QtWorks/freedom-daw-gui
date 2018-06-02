@@ -22,7 +22,7 @@
 
 namespace freedom_daw {
 
-class TrackBody : public QWidget {
+class TrackBody final : public QWidget {
 	Q_OBJECT
 public:
 	TrackBody(QWidget *parent = nullptr);

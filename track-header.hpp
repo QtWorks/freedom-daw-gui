@@ -30,7 +30,7 @@ class Knob;
 /// The header to the track widget,
 /// which contains the name and controls
 /// for the track.
-class TrackHeader : public QFrame {
+class TrackHeader final : public QFrame {
 	Q_OBJECT
 public:
 	/// Default constructor.

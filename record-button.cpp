@@ -17,14 +17,24 @@
 
 #include "record-button.hpp"
 
+#include <QPainter>
+
 namespace freedom_daw {
 
-RecordButton::RecordButton(QWidget *parent) : QAbstractButton(parent) {
+RecordButton::RecordButton(QWidget *parent) : QPushButton(parent) {
 
 }
 
 RecordButton::~RecordButton() {
 
+}
+
+void RecordButton::paintEvent(QPaintEvent *) {
+
+	QPainter painter(this);
+	//painter.save();
+	painter.drawText(QPoint(0, 0), "Test");
+	//painter.restore();
 }
 
 } // namespace freedom_daw

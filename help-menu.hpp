@@ -22,7 +22,7 @@
 
 namespace freedom_daw {
 
-class HelpMenu : public QMenu {
+class HelpMenu final : public QMenu {
 	Q_OBJECT
 public:
 	HelpMenu(QWidget *parent = nullptr);

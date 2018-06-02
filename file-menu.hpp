@@ -22,7 +22,7 @@
 
 namespace freedom_daw {
 
-class FileMenu : public QMenu {
+class FileMenu final : public QMenu {
 	Q_OBJECT
 public:
 	FileMenu(QWidget *parent = nullptr);

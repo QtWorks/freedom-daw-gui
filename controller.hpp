@@ -28,7 +28,7 @@ class Command;
 class Driver;
 class MainWindow;
 
-class Controller : public QObject {
+class Controller final : public QObject {
 	Q_OBJECT
 public:
 	Controller(QObject *parent = nullptr);

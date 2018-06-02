@@ -30,7 +30,7 @@ class TrackManager;
 /// Contains all the child widgets in
 /// the central widget, which is contained
 /// by the main window.
-class CentralWidget : public QWidget {
+class CentralWidget final : public QWidget {
 	Q_OBJECT
 public:
 	/// Default constructor.

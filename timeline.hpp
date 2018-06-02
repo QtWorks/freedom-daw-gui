@@ -25,7 +25,7 @@ namespace freedom_daw {
 /// Presents to the user the timeline of the
 /// mix as well as various markers and a cursor
 /// indicator.
-class Timeline : public QWidget {
+class Timeline final : public QWidget {
 	Q_OBJECT
 public:
 	/// Default constructor.

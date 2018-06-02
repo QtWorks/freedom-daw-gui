@@ -20,13 +20,26 @@
 
 #include <QFrame>
 
+class QGridLayout;
+
 namespace freedom_daw {
 
-class AudioPanel : public QFrame {
+class RecordButton;
+
+/// Responsible for containing the audio control buttons.
+class AudioPanel final : public QFrame {
 	Q_OBJECT
 public:
+	/// Default constructor.
+	/// @param parent A pointer to the parent widget.
 	AudioPanel(QWidget *parent);
+	/// Default deconstructor
 	~AudioPanel();
+private:
+	/// Signals to the application to start recording audio.
+	RecordButton *recordButton;
+	/// The layout for the buttons on the audio panel.
+	QGridLayout *layout;
 };
 
 } // namespace freedom_daw

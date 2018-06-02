@@ -27,7 +27,7 @@ namespace freedom_daw {
 
 class Track;
 
-class TrackManager : public QWidget {
+class TrackManager final : public QWidget {
 	Q_OBJECT
 public:
 	/// Default constructor.

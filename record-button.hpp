@@ -18,13 +18,13 @@
 #ifndef FREEDOM_DAW_RECORD_BUTTON_HPP
 #define FREEDOM_DAW_RECORD_BUTTON_HPP
 
-#include <QAbstractButton>
+#include <QPushButton>
 
 namespace freedom_daw {
 
 /// Created to allow the user a
 /// way to begin recording audio.
-class RecordButton : public QAbstractButton {
+class RecordButton final : public QPushButton {
 	Q_OBJECT
 public:
 	/// Default constructor.
@@ -33,6 +33,13 @@ public:
 	RecordButton(QWidget *parent);
 	/// Default deconstructor.
 	~RecordButton();
+protected:
+	/// An override of the paint event.
+	/// This override is used to draw the
+	/// red circle of the record button.
+	/// @param paintEvent A pointer to the
+	/// paint event information class.
+	void paintEvent(QPaintEvent *paintEvent) override;
 };
 
 } // namespace freedom_daw

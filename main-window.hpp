@@ -28,7 +28,7 @@ class MenuBar;
 
 /// The top level window for the
 /// applications graphical interface.
-class MainWindow : public QMainWindow {
+class MainWindow final : public QMainWindow {
 	Q_OBJECT
 public:
 	/// Default constructor

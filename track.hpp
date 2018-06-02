@@ -31,7 +31,7 @@ class TrackManager;
 
 /// Represents an audio track
 /// contained within the track manager.
-class Track : public QWidget {
+class Track final : public QWidget {
 	Q_OBJECT
 public:
 	/// Default constructor.

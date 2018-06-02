@@ -29,7 +29,7 @@ class FileMenu;
 class HelpMenu;
 class TrackMenu;
 
-class MenuBar : public QMenuBar {
+class MenuBar final : public QMenuBar {
 	Q_OBJECT
 public:
 	MenuBar(QWidget *parent = nullptr);

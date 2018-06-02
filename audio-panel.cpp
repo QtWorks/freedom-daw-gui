@@ -17,10 +17,18 @@
 
 #include "audio-panel.hpp"
 
+#include "record-button.hpp"
+
+#include <QGridLayout>
+
 namespace freedom_daw {
 
 AudioPanel::AudioPanel(QWidget *parent) : QFrame(parent) {
 
+	recordButton = new RecordButton(this);
+
+	layout = new QGridLayout(this);
+	layout->addWidget(recordButton, 0, 0, 1, 1);
 }
 
 AudioPanel::~AudioPanel() {
