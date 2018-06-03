@@ -27,8 +27,8 @@
 namespace freedom_daw {
 
 PlayButton::PlayButton(QWidget *parent) : AudioButton(parent) {
-	activeColor = Qt::green;
-	inactiveColor = Qt::black;
+	activeColor = QColor(0, 255, 0, 63);
+	inactiveColor = QColor(0, 0, 0, 63);
 	setCheckable(true);
 	connect(this, &QAbstractButton::toggled, this, &PlayButton::OnToggled);
 }
@@ -72,11 +72,15 @@ void PlayButton::paintEvent(QPaintEvent *event) {
 	trianglePath.lineTo(xStart + static_cast<int>(triangleHeight), yStart + (legSize / 2));
 	trianglePath.lineTo(xStart, yStart);
 
+	auto currentColor = inactiveColor;
+	if (isChecked())
+		currentColor = activeColor;
+
 	QPainter painter;
 	painter.begin(this);
 	painter.setRenderHint(QPainter::HighQualityAntialiasing);
 	painter.setPen(Qt::NoPen);
-	painter.fillPath(trianglePath, QBrush(activeColor));
+	painter.fillPath(trianglePath, QBrush(currentColor));
 	painter.end();
 }
 

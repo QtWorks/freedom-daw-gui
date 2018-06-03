@@ -15,43 +15,34 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "audio-button.hpp"
+#ifndef FREEDOM_DAW_STOP_BUTTON_HPP
+#define FREEDOM_DAW_STOP_BUTTON_HPP
 
-#include <QLinearGradient>
-#include <QPainter>
+#include "audio-button.hpp"
 
 namespace freedom_daw {
 
-AudioButton::AudioButton(QWidget *parent) : QAbstractButton(parent) {
-
-}
-
-AudioButton::~AudioButton() {
-
-}
-
-QSize AudioButton::minimumSizeHint() const {
-	return QSize(50, 50);
-}
-
-void AudioButton::paintEvent(QPaintEvent *) {
-
-	QColor topColor;
-	topColor.setRgbF(1, 1, 1, 0.1);
-
-	QColor bottomColor;
-	bottomColor.setRgbF(0, 0, 0, 0.1);
-
-	QLinearGradient gradient;
-	gradient.setStart(width() / 2, 0);
-	gradient.setFinalStop(width() / 2, height());
-	gradient.setColorAt(0, topColor);
-	gradient.setColorAt(1, bottomColor);
-
-	QPainter painter;
-	painter.begin(this);
-	painter.fillRect(0, 0, width(), height(), gradient);
-	painter.end();
-}
+/// Used for the user to be able to
+/// stop audio from playing.
+class StopButton final : public AudioButton {
+	Q_OBJECT
+public:
+	/// Default constructor.
+	/// @param parent A pointer to the parent
+	/// widget, which is a @ref AudioPanel widget.
+	StopButton(QWidget *parent = nullptr);
+	/// Default deconstructor.
+	~StopButton();
+protected:
+	/// Paints the stop button.
+	/// @param paintEvent A pointer to the
+	/// paint event information class.
+	void paintEvent(QPaintEvent *paintEvent) override;
+private:
+	/// The color of the square icon.
+	QColor squareColor;
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_STOP_BUTTON_HPP

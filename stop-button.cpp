@@ -15,42 +15,34 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "audio-button.hpp"
+#include "stop-button.hpp"
 
-#include <QLinearGradient>
 #include <QPainter>
+
+#include <algorithm>
 
 namespace freedom_daw {
 
-AudioButton::AudioButton(QWidget *parent) : QAbstractButton(parent) {
+StopButton::StopButton(QWidget *parent) : AudioButton(parent) {
+	squareColor = QColor(0, 0, 0, 63);
+}
+
+StopButton::~StopButton() {
 
 }
 
-AudioButton::~AudioButton() {
+void StopButton::paintEvent(QPaintEvent *event) {
 
-}
+	AudioButton::paintEvent(event);
 
-QSize AudioButton::minimumSizeHint() const {
-	return QSize(50, 50);
-}
-
-void AudioButton::paintEvent(QPaintEvent *) {
-
-	QColor topColor;
-	topColor.setRgbF(1, 1, 1, 0.1);
-
-	QColor bottomColor;
-	bottomColor.setRgbF(0, 0, 0, 0.1);
-
-	QLinearGradient gradient;
-	gradient.setStart(width() / 2, 0);
-	gradient.setFinalStop(width() / 2, height());
-	gradient.setColorAt(0, topColor);
-	gradient.setColorAt(1, bottomColor);
+	auto legSize = std::min(width(), height());
+	auto xStart = (width() / 2) - (legSize / 2);
+	auto yStart = (height() / 2) - (legSize / 2);
 
 	QPainter painter;
 	painter.begin(this);
-	painter.fillRect(0, 0, width(), height(), gradient);
+	painter.setPen(Qt::NoPen);
+	painter.fillRect(xStart, yStart, legSize, legSize, squareColor);
 	painter.end();
 }
 

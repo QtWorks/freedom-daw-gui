@@ -29,6 +29,8 @@ enum class CommandType {
 	DeleteTrack,
 	/// Used when creating a new track.
 	NewTrack,
+	/// Used to pause the audio streams.
+	Pause,
 	/// Used to start playing audio.
 	Play,
 	/// Used to start recording.

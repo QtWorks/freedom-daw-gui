@@ -25,8 +25,10 @@ class QGridLayout;
 namespace freedom_daw {
 
 class Command;
+class PauseButton;
 class PlayButton;
 class RecordButton;
+class StopButton;
 
 /// Responsible for containing the audio control buttons.
 class AudioPanel final : public QFrame {
@@ -50,10 +52,14 @@ signals:
 	/// @param command The command to emit.
 	void NewCommand(const Command &command);
 private:
+	/// Signals to the application to pause the audio recording.
+	PauseButton *pauseButton;
 	/// Signals to the application to start playing audio.
 	PlayButton *playButton;
 	/// Signals to the application to start recording audio.
 	RecordButton *recordButton;
+	/// Signals to the application to stop playing and recording audio.
+	StopButton *stopButton;
 	/// The layout for the buttons on the audio panel.
 	QGridLayout *layout;
 };

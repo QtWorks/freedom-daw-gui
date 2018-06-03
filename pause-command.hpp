@@ -15,43 +15,30 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "audio-button.hpp"
+#ifndef FREEDOM_DAW_PAUSE_COMMAND_HPP
+#define FREEDOM_DAW_PAUSE_COMMAND_HPP
 
-#include <QLinearGradient>
-#include <QPainter>
+#include "command.hpp"
 
 namespace freedom_daw {
 
-AudioButton::AudioButton(QWidget *parent) : QAbstractButton(parent) {
-
-}
-
-AudioButton::~AudioButton() {
-
-}
-
-QSize AudioButton::minimumSizeHint() const {
-	return QSize(50, 50);
-}
-
-void AudioButton::paintEvent(QPaintEvent *) {
-
-	QColor topColor;
-	topColor.setRgbF(1, 1, 1, 0.1);
-
-	QColor bottomColor;
-	bottomColor.setRgbF(0, 0, 0, 0.1);
-
-	QLinearGradient gradient;
-	gradient.setStart(width() / 2, 0);
-	gradient.setFinalStop(width() / 2, height());
-	gradient.setColorAt(0, topColor);
-	gradient.setColorAt(1, bottomColor);
-
-	QPainter painter;
-	painter.begin(this);
-	painter.fillRect(0, 0, width(), height(), gradient);
-	painter.end();
-}
+/// Notifies the audio driver to
+/// pause the audio streams.
+class PauseCommand final : public Command {
+public:
+	/// Default constructor.
+	PauseCommand() noexcept;
+	/// Default deconstructor.
+	~PauseCommand();
+	/// Gets the command type.
+	/// @returns Always returns @ref CommandType::Pause.
+	CommandType GetType() const noexcept override;
+	/// Writes a pause command to a JSON object.
+	/// @param jsonObject The JSON object
+	/// to write the pause command to.
+	void Write(QJsonObject &jsonObject) const override;
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_PAUSE_COMMAND_HPP

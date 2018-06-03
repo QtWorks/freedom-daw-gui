@@ -17,8 +17,10 @@
 
 #include "audio-panel.hpp"
 
+#include "pause-button.hpp"
 #include "play-button.hpp"
 #include "record-button.hpp"
+#include "stop-button.hpp"
 
 #include <QGridLayout>
 
@@ -26,15 +28,22 @@ namespace freedom_daw {
 
 AudioPanel::AudioPanel(QWidget *parent) : QFrame(parent) {
 
+	pauseButton = new PauseButton(this);
 	playButton = new PlayButton(this);
 	recordButton = new RecordButton(this);
+	stopButton = new StopButton(this);
 
+	connect(pauseButton, &PauseButton::Paused, this, &AudioPanel::OnCommand);
 	connect(playButton, &PlayButton::NewCommand, this, &AudioPanel::OnCommand);
 	connect(recordButton, &RecordButton::NewCommand, this, &AudioPanel::OnCommand);
 
 	layout = new QGridLayout(this);
+	layout->setSpacing(0);
+	layout->setMargin(0);
 	layout->addWidget(playButton,   0, 0, 1, 1);
 	layout->addWidget(recordButton, 0, 1, 1, 1);
+	layout->addWidget(pauseButton,  0, 2, 1, 1);
+	layout->addWidget(stopButton,   0, 3, 1, 1);
 }
 
 AudioPanel::~AudioPanel() {

@@ -15,43 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "audio-button.hpp"
+#include "pause-command.hpp"
 
-#include <QLinearGradient>
-#include <QPainter>
+#include <QJsonObject>
 
 namespace freedom_daw {
 
-AudioButton::AudioButton(QWidget *parent) : QAbstractButton(parent) {
+PauseCommand::PauseCommand() noexcept {
 
 }
 
-AudioButton::~AudioButton() {
+PauseCommand::~PauseCommand() {
 
 }
 
-QSize AudioButton::minimumSizeHint() const {
-	return QSize(50, 50);
+CommandType PauseCommand::GetType() const noexcept {
+	return CommandType::Pause;
 }
 
-void AudioButton::paintEvent(QPaintEvent *) {
-
-	QColor topColor;
-	topColor.setRgbF(1, 1, 1, 0.1);
-
-	QColor bottomColor;
-	bottomColor.setRgbF(0, 0, 0, 0.1);
-
-	QLinearGradient gradient;
-	gradient.setStart(width() / 2, 0);
-	gradient.setFinalStop(width() / 2, height());
-	gradient.setColorAt(0, topColor);
-	gradient.setColorAt(1, bottomColor);
-
-	QPainter painter;
-	painter.begin(this);
-	painter.fillRect(0, 0, width(), height(), gradient);
-	painter.end();
+void PauseCommand::Write(QJsonObject &jsonObject) const {
+	jsonObject["command"] = "pause";
 }
 
 } // namespace freedom_daw

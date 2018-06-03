@@ -87,6 +87,8 @@ void Controller::OnCommand(const Command &command) {
 	case CommandType::NewTrack:
 		ReadNewTrackResponse();
 		break;
+	case CommandType::Pause:
+		break;
 	case CommandType::Play:
 		break;
 	case CommandType::RecordStart:
