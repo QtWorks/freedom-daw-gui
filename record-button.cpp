@@ -27,7 +27,7 @@
 
 namespace freedom_daw {
 
-RecordButton::RecordButton(QWidget *parent) : QAbstractButton(parent) {
+RecordButton::RecordButton(QWidget *parent) : AudioButton(parent) {
 
 	circleColor = Qt::red;
 
@@ -48,10 +48,6 @@ void RecordButton::SetCircleColor(const QColor &color) {
 	circleColor = color;
 }
 
-QSize RecordButton::minimumSizeHint() const {
-	return QSize(50, 50);
-}
-
 void RecordButton::OnToggled(bool state) {
 	if (state) {
 		RecordStartCommand recordStartCommand;
@@ -62,7 +58,9 @@ void RecordButton::OnToggled(bool state) {
 	}
 }
 
-void RecordButton::paintEvent(QPaintEvent *) {
+void RecordButton::paintEvent(QPaintEvent *paintEvent) {
+
+	AudioButton::paintEvent(paintEvent);
 
 	QColor currentCircleColor(circleColor);
 

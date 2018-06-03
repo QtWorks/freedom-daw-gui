@@ -18,7 +18,8 @@
 #ifndef FREEDOM_DAW_PLAY_BUTTON_HPP
 #define FREEDOM_DAW_PLAY_BUTTON_HPP
 
-#include <QAbstractButton>
+#include "audio-button.hpp"
+
 #include <QColor>
 
 namespace freedom_daw {
@@ -26,7 +27,7 @@ namespace freedom_daw {
 class Command;
 
 /// Used to allow the user to play the project.
-class PlayButton final : public QAbstractButton {
+class PlayButton final : public AudioButton {
 	Q_OBJECT
 	Q_PROPERTY(QColor activeColor WRITE SetActiveColor)
 	Q_PROPERTY(QColor inactiveColor WRITE SetInactiveColor)
@@ -46,10 +47,6 @@ public:
 	/// @param color The inactive color
 	/// for the inner triangle.
 	void SetInactiveColor(const QColor &color);
-	/// Returns the minimum suggested size for
-	/// the play button.
-	/// @returns The minimum suggested size.
-	QSize minimumSizeHint() const override;
 protected slots:
 	/// Called when the button state changes.
 	/// @param state Indicates whether the button

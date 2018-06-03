@@ -10,6 +10,8 @@ set (CMAKE_AUTOMOC ON)
 set (CMAKE_AUTORCC ON)
 
 add_executable("freedom-daw"
+	"audio-button.hpp"
+	"audio-button.cpp"
 	"audio-panel.hpp"
 	"audio-panel.cpp"
 	"command.hpp"

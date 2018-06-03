@@ -25,3 +25,7 @@ freedom_daw--TrackBody {
 	border-radius: 10px;
 	background-color: "#666b62";
 }
+
+freedom_daw--RecordButton {
+	background-color: black;
+}

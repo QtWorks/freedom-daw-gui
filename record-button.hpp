@@ -18,7 +18,8 @@
 #ifndef FREEDOM_DAW_RECORD_BUTTON_HPP
 #define FREEDOM_DAW_RECORD_BUTTON_HPP
 
-#include <QAbstractButton>
+#include "audio-button.hpp"
+
 #include <QColor>
 
 class QGraphicsBlurEffect;
@@ -29,7 +30,7 @@ class Command;
 
 /// Created to allow the user a
 /// way to begin recording audio.
-class RecordButton final : public QAbstractButton {
+class RecordButton final : public AudioButton {
 	Q_OBJECT
 	Q_PROPERTY(QColor circleColor WRITE SetCircleColor)
 public:
@@ -45,10 +46,6 @@ public:
 	/// @param color The color to assign the inner
 	/// circle in the record button.
 	void SetCircleColor(const QColor &color);
-	/// Returns the minimum recommended size for the
-	/// record button.
-	/// @returns The minimum recommended button size.
-	QSize minimumSizeHint() const override;
 signals:
 	/// Emitted when the record button either gets
 	/// checked or unchecked.

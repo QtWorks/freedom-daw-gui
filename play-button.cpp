@@ -26,7 +26,7 @@
 
 namespace freedom_daw {
 
-PlayButton::PlayButton(QWidget *parent) : QAbstractButton(parent) {
+PlayButton::PlayButton(QWidget *parent) : AudioButton(parent) {
 	activeColor = Qt::green;
 	inactiveColor = Qt::black;
 	setCheckable(true);
@@ -45,10 +45,6 @@ void PlayButton::SetInactiveColor(const QColor &color) {
 	inactiveColor = color;
 }
 
-QSize PlayButton::minimumSizeHint() const {
-	return QSize(50, 50);
-}
-
 void PlayButton::OnToggled(bool state) {
 	// TODO grey out the play button
 	// so that it can't be pressed again.
@@ -59,7 +55,9 @@ void PlayButton::OnToggled(bool state) {
 	}
 }
 
-void PlayButton::paintEvent(QPaintEvent *) {
+void PlayButton::paintEvent(QPaintEvent *event) {
+
+	AudioButton::paintEvent(event);
 
 	auto legSize = std::min(width(), height());
 
