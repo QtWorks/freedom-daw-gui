@@ -33,9 +33,10 @@ AudioPanel::AudioPanel(QWidget *parent) : QFrame(parent) {
 	recordButton = new RecordButton(this);
 	stopButton = new StopButton(this);
 
-	connect(pauseButton, &PauseButton::Paused, this, &AudioPanel::OnCommand);
 	connect(playButton, &PlayButton::NewCommand, this, &AudioPanel::OnCommand);
 	connect(recordButton, &RecordButton::NewCommand, this, &AudioPanel::OnCommand);
+	connect(pauseButton, &PauseButton::Paused, this, &AudioPanel::OnCommand);
+	connect(stopButton, &StopButton::Stopped, this, &AudioPanel::OnCommand);
 
 	layout = new QGridLayout(this);
 	layout->setSpacing(0);

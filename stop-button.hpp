@@ -22,6 +22,8 @@
 
 namespace freedom_daw {
 
+class Command;
+
 /// Used for the user to be able to
 /// stop audio from playing.
 class StopButton final : public AudioButton {
@@ -33,6 +35,19 @@ public:
 	StopButton(QWidget *parent = nullptr);
 	/// Default deconstructor.
 	~StopButton();
+signals:
+	/// Emitted when the stop button is clicked.
+	/// When the stop button is clicked, it will
+	/// emit a pause command followed by a seek
+	/// command that moves the audio head to the
+	/// beginning of the project.
+	/// @param command First is a @ref PauseCommand
+	/// and then, on the second signal, is a @ref SeekCommand.
+	void Stopped(const Command &command);
+protected slots:
+	/// Called when the button state changes.
+	/// @param state The new button state.
+	void OnToggled(bool state);
 protected:
 	/// Paints the stop button.
 	/// @param paintEvent A pointer to the

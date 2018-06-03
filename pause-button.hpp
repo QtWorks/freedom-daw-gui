@@ -48,7 +48,7 @@ protected:
 	/// draw the pause symbol.
 	/// @param paintEvent The paint event
 	/// information structure.
-	void paintEvent(QPaintEvent *paintEvent);
+	void paintEvent(QPaintEvent *paintEvent) override;
 };
 
 } // namespace freedom_daw

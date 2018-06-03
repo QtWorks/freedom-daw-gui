@@ -95,6 +95,8 @@ void Controller::OnCommand(const Command &command) {
 		break;
 	case CommandType::RecordStop:
 		break;
+	case CommandType::Seek:
+		break;
 	}
 }
 

@@ -36,7 +36,9 @@ enum class CommandType {
 	/// Used to start recording.
 	RecordStart,
 	/// Used to stop recording.
-	RecordStop
+	RecordStop,
+	/// Used to move the audio head.
+	Seek
 };
 
 /// Used to represent a command to be

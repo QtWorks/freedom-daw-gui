@@ -17,6 +17,9 @@
 
 #include "stop-button.hpp"
 
+#include "pause-command.hpp"
+#include "seek-command.hpp"
+
 #include <QPainter>
 
 #include <algorithm>
@@ -24,11 +27,30 @@
 namespace freedom_daw {
 
 StopButton::StopButton(QWidget *parent) : AudioButton(parent) {
+	connect(this, &QAbstractButton::toggled, this, &StopButton::OnToggled);
 	squareColor = QColor(0, 0, 0, 63);
+	setCheckable(true);
 }
 
 StopButton::~StopButton() {
 
+}
+
+void StopButton::OnToggled(bool state) {
+	if (state) {
+
+		PauseCommand pauseCommand;
+		emit Stopped(pauseCommand);
+
+		SeekCommand seekCommand;
+		seekCommand.SetFrame(0);
+		emit Stopped(seekCommand);
+
+		// TODO Change button appearance
+	} else {
+
+		// TODO Change button appearance
+	}
 }
 
 void StopButton::paintEvent(QPaintEvent *event) {
