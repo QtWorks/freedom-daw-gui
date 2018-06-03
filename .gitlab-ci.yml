@@ -1,0 +1,12 @@
+before_script:
+    - apt install qtbase5-dev
+
+stages:
+    - build
+
+job 1:
+    stage: build
+    script:
+        - mkdir build && cd build
+        - cmake ..
+        - cmake --build .
