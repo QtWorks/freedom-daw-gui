@@ -1,6 +1,6 @@
 before_script:
     - apt update
-    - apt install qtbase5-dev
+    - apt install --assume-yes qtbase5-dev
 
 stages:
     - build
