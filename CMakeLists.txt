@@ -79,7 +79,7 @@ add_executable("freedom-daw"
 
 target_link_libraries("freedom-daw" PRIVATE Qt5::Widgets)
 
-target_compile_features("freedom-daw" PRIVATE cxx_std_17)
+target_compile_features("freedom-daw" PRIVATE cxx_std_14)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
 	target_compile_options("freedom-daw" PRIVATE -Wall -Wextra -Werror -Wfatal-errors)
