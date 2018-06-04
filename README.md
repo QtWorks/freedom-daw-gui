@@ -1,3 +1,11 @@
+Freedom DAW GUI
+===============
+
+This is the graphical front end to the Freedom DAW project.
+The graphical front end is one half of the project.
+The other half is the driver component, which manages projects and audio streams.
+They communicate via IPC mechanisms, using JSON.
+
 ### Building
 
 Build on the latest Ubuntu.
