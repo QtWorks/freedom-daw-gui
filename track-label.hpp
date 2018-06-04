@@ -15,38 +15,33 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "track-header.hpp"
+#ifndef FREEDOM_DAW_TRACK_LABEL_HPP
+#define FREEDOM_DAW_TRACK_LABEL_HPP
 
-#include "knob.hpp"
-#include "track-label.hpp"
-
-#include <QGridLayout>
+#include <QLabel>
 
 namespace freedom_daw {
 
-TrackHeader::TrackHeader(QWidget *parent) : QFrame(parent) {
-
-	label = new TrackLabel(this);
-
-	panningKnob = new Knob(parent);
-	panningKnob->SetName(tr("Balance"));
-
-	volumeKnob = new Knob(parent);
-	volumeKnob->SetName(tr("Volume"));
-
-	layout = new QGridLayout(this);
-	layout->addWidget(label,       0, 0, 1, 1);
-	layout->addWidget(panningKnob, 0, 1, 1, 1);
-	layout->addWidget(volumeKnob,  0, 2, 1, 1);
-
-}
-
-TrackHeader::~TrackHeader() {
-
-}
-
-void TrackHeader::SetName(const QString &name) {
-	label->SetName(name);
-}
+/// Used to show the name
+/// of each track.
+class TrackLabel final : public QLabel {
+	Q_OBJECT
+public:
+	/// Default constructor.
+	/// @param parent A pointer to the
+	/// parent widget. The parent widget,
+	/// in this case, is an instance of
+	/// the @ref TrackHeader class.
+	TrackLabel(QWidget *parent = nullptr);
+	/// Default deconstructor.
+	~TrackLabel();
+	/// Sets the name displayed by
+	/// the track label.
+	/// @param name The name to display
+	/// on the track label.
+	void SetName(const QString &name);
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_TRACK_LABEL_HPP

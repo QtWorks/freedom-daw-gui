@@ -20,12 +20,12 @@
 
 #include <QFrame>
 
-class QLabel;
 class QGridLayout;
 
 namespace freedom_daw {
 
 class Knob;
+class TrackLabel;
 
 /// The header to the track widget,
 /// which contains the name and controls
@@ -45,7 +45,7 @@ public:
 private:
 	/// The label widget which displays the
 	/// track name.
-	QLabel *label;
+	TrackLabel *label;
 	/// The panning knob, used to modify left
 	/// and right channel balance.
 	Knob *panningKnob;

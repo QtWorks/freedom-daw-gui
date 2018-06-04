@@ -15,38 +15,20 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "track-header.hpp"
-
-#include "knob.hpp"
 #include "track-label.hpp"
-
-#include <QGridLayout>
 
 namespace freedom_daw {
 
-TrackHeader::TrackHeader(QWidget *parent) : QFrame(parent) {
+TrackLabel::TrackLabel(QWidget *parent) : QLabel(parent) {
+	setAlignment(Qt::AlignCenter);
+}
 
-	label = new TrackLabel(this);
-
-	panningKnob = new Knob(parent);
-	panningKnob->SetName(tr("Balance"));
-
-	volumeKnob = new Knob(parent);
-	volumeKnob->SetName(tr("Volume"));
-
-	layout = new QGridLayout(this);
-	layout->addWidget(label,       0, 0, 1, 1);
-	layout->addWidget(panningKnob, 0, 1, 1, 1);
-	layout->addWidget(volumeKnob,  0, 2, 1, 1);
+TrackLabel::~TrackLabel() {
 
 }
 
-TrackHeader::~TrackHeader() {
-
-}
-
-void TrackHeader::SetName(const QString &name) {
-	label->SetName(name);
+void TrackLabel::SetName(const QString &name) {
+	setText(name);
 }
 
 } // namespace freedom_daw

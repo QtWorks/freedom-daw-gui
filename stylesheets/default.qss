@@ -9,6 +9,10 @@ freedom_daw--AudioPanel {
 	background-color: "#666b62";
 }
 
+freedom_daw--TrackLabel {
+	font-weight: bold;
+}
+
 freedom_daw--Track {
 }
 
