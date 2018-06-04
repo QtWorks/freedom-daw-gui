@@ -17,7 +17,9 @@
 
 #include "file-menu.hpp"
 
+#include "close-project-command.hpp"
 #include "new-project-command.hpp"
+#include "open-project-command.hpp"
 
 namespace freedom_daw {
 
@@ -27,7 +29,9 @@ FileMenu::FileMenu(QWidget *parent) : QMenu(parent) {
 	closeProject = addAction(tr("Close"));
 	openProject = addAction(tr("Open"));
 
+	connect(closeProject, &QAction::triggered, this, &FileMenu::OnCloseTriggered);
 	connect(newProject, &QAction::triggered, this, &FileMenu::OnNewTriggered);
+	connect(openProject, &QAction::triggered, this, &FileMenu::OnOpenTriggered);
 
 	setTitle(tr("File"));
 }
@@ -36,11 +40,28 @@ FileMenu::~FileMenu() {
 
 }
 
+void FileMenu::OnCloseTriggered() {
+
+	CloseProjectCommand closeProjectCommand;
+
+	emit NewCommand(closeProjectCommand);
+}
+
 void FileMenu::OnNewTriggered() {
 
 	NewProjectCommand newProjectCommand;
 
 	emit NewCommand(newProjectCommand);
+}
+
+void FileMenu::OnOpenTriggered() {
+
+	OpenProjectCommand openProjectCommand;
+
+	// TODO : Use OpenProjectDialog class
+	// to get the project ID of the project to open.
+
+	emit NewCommand(openProjectCommand);
 }
 
 } // namespace freedom_daw

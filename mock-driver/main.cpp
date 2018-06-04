@@ -85,14 +85,13 @@ void Driver::Run() {
 			break;
 		}
 
-		log << "Got a command." << std::endl;
-
 		if (jsonObject.empty()) {
 			log << "Received an empty command." << std::endl;
 		} else if (jsonObject["command"] == "quit") {
 			log << "Received quit command." << std::endl;
 			break;
 		} else {
+			log << "Received a '" << jsonObject["command"].toString().toStdString() << "' command." << std::endl;
 			// TODO
 		}
 	}

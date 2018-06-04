@@ -25,12 +25,16 @@ namespace freedom_daw {
 /// Lists the possible derived
 /// classes of the command class.
 enum class CommandType {
+	/// Used when closing a project.
+	CloseProject,
 	/// Used when deleting a track.
 	DeleteTrack,
 	/// Used when creating a new project.
 	NewProject,
 	/// Used when creating a new track.
 	NewTrack,
+	/// Used when opening a project.
+	OpenProject,
 	/// Used to pause the audio streams.
 	Pause,
 	/// Used to start playing audio.

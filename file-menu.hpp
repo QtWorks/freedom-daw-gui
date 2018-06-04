@@ -44,8 +44,14 @@ signals:
 	void NewCommand(const Command &command);
 protected slots:
 	/// Called when the user hits the button
+	/// requesting to close the project.
+	void OnCloseTriggered();
+	/// Called when the user hits the button
 	/// requesting to create a new project.
 	void OnNewTriggered();
+	/// Called when the user hits the button
+	/// requesting to open an existing project.
+	void OnOpenTriggered();
 private:
 	/// Used for closing a project.
 	QAction *closeProject;

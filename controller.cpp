@@ -91,12 +91,16 @@ void Controller::OnCommand(const Command &command) {
 	driver->Write(command);
 
 	switch (command.GetType()) {
+	case CommandType::CloseProject:
+		break;
 	case CommandType::DeleteTrack:
 		break;
 	case CommandType::NewProject:
 		break;
 	case CommandType::NewTrack:
 		ReadNewTrackResponse();
+		break;
+	case CommandType::OpenProject:
 		break;
 	case CommandType::Pause:
 		break;
