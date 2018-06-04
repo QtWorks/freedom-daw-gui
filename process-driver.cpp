@@ -30,7 +30,16 @@ ProcessDriver::ProcessDriver() {
 }
 
 ProcessDriver::~ProcessDriver() {
-	delete process;
+	if (process != nullptr) {
+		delete process;
+		process = nullptr;
+	}
+}
+
+void ProcessDriver::Close() {
+	if (process != nullptr) {
+		process->waitForFinished();
+	}
 }
 
 void ProcessDriver::Start(const QString &path) {

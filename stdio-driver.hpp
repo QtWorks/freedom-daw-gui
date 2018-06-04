@@ -31,6 +31,8 @@ public:
 	StdioDriver() noexcept;
 	/// Default deconstructor.
 	~StdioDriver();
+	/// Closes the standard IO driver.
+	void Close() override;
 	/// Reads a response 
 	bool Read(Response &response) override;
 	/// Sends a command to the audio driver.

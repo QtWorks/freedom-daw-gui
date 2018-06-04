@@ -33,6 +33,9 @@ public:
 	ProcessDriver();
 	/// Default deconstructor
 	~ProcessDriver();
+	/// Waits for the process to exit,
+	/// then deletes the internal process handle.
+	void Close() override;
 	/// Starts the process that will
 	/// be used as an audio driver.
 	/// @param path The path of the

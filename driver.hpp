@@ -29,6 +29,8 @@ class Driver {
 public:
 	/// Default deconstructor
 	virtual ~Driver();
+	/// Closes the driver.
+	virtual void Close() = 0;
 	/// Writes a command to the driver.
 	/// @param command The command to write.
 	virtual void Write(const Command &command) = 0;

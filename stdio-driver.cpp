@@ -36,6 +36,10 @@ StdioDriver::~StdioDriver() {
 
 }
 
+void StdioDriver::Close() {
+
+}
+
 bool StdioDriver::Read(Response &response) {
 
 	std::string source;

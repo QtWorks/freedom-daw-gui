@@ -109,6 +109,7 @@ void Controller::OnCommand(const Command &command) {
 	case CommandType::Seek:
 		break;
 	case CommandType::Quit:
+		driver->Close();
 		break;
 	}
 }
