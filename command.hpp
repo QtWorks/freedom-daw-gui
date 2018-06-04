@@ -27,6 +27,8 @@ namespace freedom_daw {
 enum class CommandType {
 	/// Used when deleting a track.
 	DeleteTrack,
+	/// Used when creating a new project.
+	NewProject,
 	/// Used when creating a new track.
 	NewTrack,
 	/// Used to pause the audio streams.

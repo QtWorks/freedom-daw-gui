@@ -15,32 +15,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "file-menu.hpp"
+#ifndef FREEDOM_DAW_NEW_PROJECT_COMMAND_HPP
+#define FREEDOM_DAW_NEW_PROJECT_COMMAND_HPP
 
-#include "new-project-command.hpp"
+#include "command.hpp"
 
 namespace freedom_daw {
 
-FileMenu::FileMenu(QWidget *parent) : QMenu(parent) {
-
-	newProject = addAction(tr("New"));
-	closeProject = addAction(tr("Close"));
-	openProject = addAction(tr("Open"));
-
-	connect(newProject, &QAction::triggered, this, &FileMenu::OnNewTriggered);
-
-	setTitle(tr("File"));
-}
-
-FileMenu::~FileMenu() {
-
-}
-
-void FileMenu::OnNewTriggered() {
-
-	NewProjectCommand newProjectCommand;
-
-	emit NewCommand(newProjectCommand);
-}
+/// A command made for creating new projects.
+class NewProjectCommand final : public Command {
+public:
+	/// Default constructor.
+	NewProjectCommand() noexcept;
+	/// Default deconstructor.
+	~NewProjectCommand();
+	/// Gets the command type.
+	/// @returns Always returns @ref CommandType::NewProject.
+	CommandType GetType() const noexcept override;
+	/// Writes the command to a JSON object.
+	/// @param jsonObject The JSON object to
+	/// write the command to.
+	void Write(QJsonObject &jsonObject) const override;
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_NEW_PROJECT_COMMAND_HPP

@@ -22,14 +22,36 @@
 
 namespace freedom_daw {
 
+class Command;
+
+/// Used for managing files, including
+/// projects and single audio files.
 class FileMenu final : public QMenu {
 	Q_OBJECT
 public:
+	/// Default constructor.
+	/// @param parent A pointer to the
+	/// parent widget, which should be
+	/// an instance of the @ref MenuBar
+	/// class.
 	FileMenu(QWidget *parent = nullptr);
+	/// Default deconstructor.
 	~FileMenu();
+signals:
+	/// Emitted when closing, creating,
+	/// or opening a project.
+	/// @param A reference to the command instance.
+	void NewCommand(const Command &command);
+protected slots:
+	/// Called when the user hits the button
+	/// requesting to create a new project.
+	void OnNewTriggered();
 private:
+	/// Used for closing a project.
 	QAction *closeProject;
+	/// Used for creating a new project.
 	QAction *newProject;
+	/// Used for opening an existing project.
 	QAction *openProject;
 };
 

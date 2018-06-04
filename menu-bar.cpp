@@ -29,6 +29,7 @@ MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent) {
 	helpMenu = new HelpMenu(this);
 	trackMenu = new TrackMenu(this);
 
+	connect(fileMenu, &FileMenu::NewCommand, this, &MenuBar::OnCommand);
 	connect(trackMenu, &TrackMenu::NewCommand, this, &MenuBar::OnCommand);
 
 	addMenu(fileMenu);

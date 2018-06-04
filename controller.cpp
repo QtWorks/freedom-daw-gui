@@ -84,6 +84,8 @@ void Controller::OnCommand(const Command &command) {
 	switch (command.GetType()) {
 	case CommandType::DeleteTrack:
 		break;
+	case CommandType::NewProject:
+		break;
 	case CommandType::NewTrack:
 		ReadNewTrackResponse();
 		break;

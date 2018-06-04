@@ -15,32 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "file-menu.hpp"
-
 #include "new-project-command.hpp"
+
+#include <QJsonObject>
 
 namespace freedom_daw {
 
-FileMenu::FileMenu(QWidget *parent) : QMenu(parent) {
-
-	newProject = addAction(tr("New"));
-	closeProject = addAction(tr("Close"));
-	openProject = addAction(tr("Open"));
-
-	connect(newProject, &QAction::triggered, this, &FileMenu::OnNewTriggered);
-
-	setTitle(tr("File"));
-}
-
-FileMenu::~FileMenu() {
+NewProjectCommand::NewProjectCommand() noexcept {
 
 }
 
-void FileMenu::OnNewTriggered() {
+NewProjectCommand::~NewProjectCommand() {
 
-	NewProjectCommand newProjectCommand;
+}
 
-	emit NewCommand(newProjectCommand);
+CommandType NewProjectCommand::GetType() const noexcept {
+	return CommandType::NewProject;
+}
+
+void NewProjectCommand::Write(QJsonObject &jsonObject) const {
+	jsonObject["command"] = "new-project";
 }
 
 } // namespace freedom_daw
