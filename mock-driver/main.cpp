@@ -17,6 +17,8 @@
 
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QString>
+#include <QList>
 
 #include <fstream>
 #include <iostream>
@@ -29,14 +31,20 @@ namespace {
 /// handling commands issued by
 /// the interface.
 class Driver final {
+	/// Used for logging events.
 	std::ostream &log;
+	/// Used to write to the graphical interface.
 	std::ostream &output;
+	/// Used for reading from the graphical interface.
 	std::istream &input;
 public:
 	/// Default constructor.
 	Driver(std::ostream &log_) noexcept;
 	/// Default deconstructor.
 	~Driver();
+	/// Runs the test driver.
+	void Run();
+protected:
 	/// Gets a command from the
 	/// standard input.
 	/// @param jsonObject The JSON object
@@ -52,22 +60,7 @@ int main() {
 
 	Driver driver(logFile);
 
-	for (;;) {
-
-		QJsonObject jsonObject;
-
-		if (!driver.GetCommand(jsonObject)) {
-			break;
-		}
-
-		if (jsonObject.empty()) {
-			logFile << "Got empty command." << std::endl;
-		} else if (jsonObject["command"] == "quit") {
-			break;
-		} else {
-			logFile << "Got command: " << jsonObject["command"].toString().toStdString() << std::endl;
-		}
-	}
+	driver.Run();
 
 	return EXIT_SUCCESS;
 }
@@ -80,6 +73,29 @@ Driver::Driver(std::ostream &log_) noexcept : log(log_), output(std::cout), inpu
 
 Driver::~Driver() {
 
+}
+
+void Driver::Run() {
+
+	for (;;) {
+
+		QJsonObject jsonObject;
+
+		if (!GetCommand(jsonObject)) {
+			break;
+		}
+
+		log << "Got a command." << std::endl;
+
+		if (jsonObject.empty()) {
+			log << "Received an empty command." << std::endl;
+		} else if (jsonObject["command"] == "quit") {
+			log << "Received quit command." << std::endl;
+			break;
+		} else {
+			// TODO
+		}
+	}
 }
 
 bool Driver::GetCommand(QJsonObject &jsonObject) {
