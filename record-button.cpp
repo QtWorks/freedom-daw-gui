@@ -68,11 +68,13 @@ void RecordButton::paintEvent(QPaintEvent *paintEvent) {
 		currentCircleColor.setAlphaF(0.25);
 		blurEffect->setEnabled(false);
 	} else {
+		currentCircleColor.setAlphaF(0.75);
 		blurEffect->setEnabled(true);
 	}
 
 	QPainter painter;
 	painter.begin(this);
+	painter.setRenderHint(QPainter::HighQualityAntialiasing);
 	painter.setPen(Qt::NoPen);
 
 	// Draw the background
