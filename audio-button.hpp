@@ -39,6 +39,10 @@ protected:
 	/// Handles the paint event for the button.
 	/// Used to draw the background.
 	virtual void paintEvent(QPaintEvent *) override;
+	/// Paints the audio button as if it is checked.
+	void paintChecked(QPaintEvent *);
+	/// Paints the audio button as if it is unchecked.
+	void paintUnchecked(QPaintEvent *);
 };
 
 } // namespace freedom_daw

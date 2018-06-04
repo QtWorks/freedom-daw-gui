@@ -34,7 +34,26 @@ QSize AudioButton::minimumSizeHint() const {
 	return QSize(50, 50);
 }
 
-void AudioButton::paintEvent(QPaintEvent *) {
+void AudioButton::paintEvent(QPaintEvent *paintEvent) {
+	if (isChecked()) {
+		paintChecked(paintEvent);
+	} else {
+		paintUnchecked(paintEvent);
+	}
+}
+
+void AudioButton::paintChecked(QPaintEvent *) {
+
+	QColor color;
+	color.setRgbF(0, 0, 0, 0.1);
+
+	QPainter painter;
+	painter.begin(this);
+	painter.fillRect(0, 0, width(), height(), QBrush(color));
+	painter.end();
+}
+
+void AudioButton::paintUnchecked(QPaintEvent *) {
 
 	QColor topColor;
 	topColor.setRgbF(1, 1, 1, 0.1);
