@@ -79,10 +79,18 @@ add_executable("freedom-daw"
 	"track-menu.hpp"
 	"track-menu.cpp"
 	"track-manager.hpp"
-	"track-manager.cpp")
+	"track-manager.cpp"
+	"quit-command.hpp"
+	"quit-command.cpp")
 
 target_link_libraries("freedom-daw" PRIVATE Qt5::Widgets)
 
+add_executable("mock-driver"
+	"mock-driver/main.cpp")
+
+target_link_libraries("mock-driver" PRIVATE Qt5::Core)
+
 if (CMAKE_COMPILER_IS_GNUCXX)
 	target_compile_options("freedom-daw" PRIVATE -Wall -Wextra -Werror -Wfatal-errors -std=c++11)
+	target_compile_options("mock-driver" PRIVATE -Wall -Wextra -Werror -Wfatal-errors -std=c++11)
 endif (CMAKE_COMPILER_IS_GNUCXX)

@@ -40,7 +40,10 @@ enum class CommandType {
 	/// Used to stop recording.
 	RecordStop,
 	/// Used to move the audio head.
-	Seek
+	Seek,
+	/// Used to allow the driver to
+	/// exit gracefully.
+	Quit
 };
 
 /// Used to represent a command to be

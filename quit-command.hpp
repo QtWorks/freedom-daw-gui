@@ -15,47 +15,32 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "process-driver.hpp"
+#ifndef FREEDOM_DAW_QUIT_COMMAND_HPP
+#define FREEDOM_DAW_QUIT_COMMAND_HPP
 
 #include "command.hpp"
 
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QProcess>
+class QJsonObject;
 
 namespace freedom_daw {
 
-ProcessDriver::ProcessDriver() {
-	process = new QProcess();
-}
-
-ProcessDriver::~ProcessDriver() {
-	delete process;
-}
-
-void ProcessDriver::Start(const QString &path) {
-	process->start(path);
-}
-
-bool ProcessDriver::Read(Response &response) {
-	(void) response;
-	return false;
-}
-
-void ProcessDriver::Write(const Command &command) {
-
-	QJsonObject jsonCommand;
-
-	command.Write(jsonCommand);
-
-	QJsonDocument jsonDoc(jsonCommand);
-
-	QString commandString(jsonDoc.toJson(QJsonDocument::Indented));
-
-	process->write(commandString.toUtf8());
-	process->write("\n");
-
-	process->waitForBytesWritten();
-}
+/// Issued to the driver to notify it
+/// that it may exit gracefully.
+class QuitCommand final : public Command {
+public:
+	/// Default constructor.
+	QuitCommand() noexcept;
+	/// Default deconstructor.
+	~QuitCommand();
+	/// Gets the command type.
+	/// @returns Always returns @ref CommandType::Quit.
+	CommandType GetType() const noexcept override;
+	/// Writes the quit command to a JSON object.
+	/// @param jsonObject The JSON object to
+	/// write the command to.
+	void Write(QJsonObject &jsonObject) const override;
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_QUIT_COMMAND_HPP

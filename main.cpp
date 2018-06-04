@@ -32,23 +32,19 @@ namespace {
 int LoadStyleSheet(QApplication &app, const QString &path) {
 
 	QFile file(path);
-
 	file.open(QIODevice::ReadOnly);
-
 	QString styleSheet(file.readAll());
-
 	app.setStyleSheet(styleSheet);
 
 	return 0;
 }
 
-int SetupWindowView(QApplication &app,
-                    freedom_daw::Controller &controller) {
+int SetupWindowView(QApplication &app, freedom_daw::Controller &controller) {
 
 	auto screenRect = app.desktop()->screenGeometry();
-
-	controller.ResizeMainWindow(screenRect.width() / 2,
-	                            screenRect.height() / 2);
+	auto windowWidth = screenRect.width() / 2;
+	auto windowHeight = screenRect.height() / 2;
+	controller.ResizeMainWindow(windowWidth, windowHeight);
 
 	return 0;
 }
@@ -61,12 +57,17 @@ int Main(int argc, char **argv) {
 
 	freedom_daw::Controller controller;
 
-	controller.UseStdioDriver();
+	// controller.UseStdioDriver();
+	controller.UseProcessDriver("./mock-driver");
 	controller.ShowMainWindow();
 
 	SetupWindowView(app, controller);
 
-	return app.exec();
+	int exitCode = app.exec();
+
+	controller.CloseDriver();
+
+	return exitCode;
 }
 
 } // namespace

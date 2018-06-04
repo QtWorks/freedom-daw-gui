@@ -24,6 +24,7 @@
 #include "new-track-response.hpp"
 #include "process-driver.hpp"
 #include "stdio-driver.hpp"
+#include "quit-command.hpp"
 
 #include <QErrorMessage>
 
@@ -45,6 +46,13 @@ Controller::~Controller() {
 
 	if (driver != nullptr)
 		delete driver;
+}
+
+void Controller::CloseDriver() {
+
+	QuitCommand quitCommand;
+
+	OnCommand(quitCommand);
 }
 
 void Controller::ResizeMainWindow(int width, int height) {
@@ -69,6 +77,7 @@ void Controller::UseProcessDriver(const QString &path) {
 		delete driver;
 
 	auto processDriver = new ProcessDriver();
+
 	processDriver->Start(path);
 
 	driver = processDriver;
@@ -98,6 +107,8 @@ void Controller::OnCommand(const Command &command) {
 	case CommandType::RecordStop:
 		break;
 	case CommandType::Seek:
+		break;
+	case CommandType::Quit:
 		break;
 	}
 }

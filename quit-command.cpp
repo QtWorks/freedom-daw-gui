@@ -15,47 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "process-driver.hpp"
+#include "quit-command.hpp"
 
-#include "command.hpp"
-
-#include <QJsonDocument>
 #include <QJsonObject>
-#include <QProcess>
 
 namespace freedom_daw {
 
-ProcessDriver::ProcessDriver() {
-	process = new QProcess();
+QuitCommand::QuitCommand() noexcept {
+
 }
 
-ProcessDriver::~ProcessDriver() {
-	delete process;
+QuitCommand::~QuitCommand() {
+
 }
 
-void ProcessDriver::Start(const QString &path) {
-	process->start(path);
+CommandType QuitCommand::GetType() const noexcept {
+	return CommandType::Quit;
 }
 
-bool ProcessDriver::Read(Response &response) {
-	(void) response;
-	return false;
-}
-
-void ProcessDriver::Write(const Command &command) {
-
-	QJsonObject jsonCommand;
-
-	command.Write(jsonCommand);
-
-	QJsonDocument jsonDoc(jsonCommand);
-
-	QString commandString(jsonDoc.toJson(QJsonDocument::Indented));
-
-	process->write(commandString.toUtf8());
-	process->write("\n");
-
-	process->waitForBytesWritten();
+void QuitCommand::Write(QJsonObject &jsonObject) const {
+	jsonObject["command"] = "quit";
 }
 
 } // namespace freedom_daw
