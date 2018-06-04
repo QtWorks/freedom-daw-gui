@@ -20,6 +20,9 @@
 namespace freedom_daw {
 
 FileMenu::FileMenu(QWidget *parent) : QMenu(parent) {
+	newProject = addAction(tr("New"));
+	closeProject = addAction(tr("Close"));
+	openProject = addAction(tr("Open"));
 	setTitle(tr("File"));
 }
 

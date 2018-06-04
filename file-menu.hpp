@@ -29,8 +29,8 @@ public:
 	~FileMenu();
 private:
 	QAction *closeProject;
-	QAction *openProject;
 	QAction *newProject;
+	QAction *openProject;
 };
 
 } // namespace freedom_daw
