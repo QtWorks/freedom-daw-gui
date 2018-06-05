@@ -25,6 +25,7 @@ class QMenu;
 namespace freedom_daw {
 
 class Command;
+class EditMenu;
 class FileMenu;
 class HelpMenu;
 class TrackMenu;
@@ -39,7 +40,7 @@ signals:
 public slots:
 	void OnCommand(const Command &command);
 private:
-	QMenu *editMenu;
+	EditMenu *editMenu;
 	QMenu *viewMenu;
 	FileMenu *fileMenu;
 	HelpMenu *helpMenu;

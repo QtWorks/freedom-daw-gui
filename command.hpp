@@ -39,12 +39,17 @@ enum class CommandType {
 	Pause,
 	/// Used to start playing audio.
 	Play,
+	/// Used to redo something that
+	/// was undone.
+	Redo,
 	/// Used to start recording.
 	RecordStart,
 	/// Used to stop recording.
 	RecordStop,
 	/// Used to move the audio head.
 	Seek,
+	/// Used to undo the last command.
+	Undo,
 	/// Used to allow the driver to
 	/// exit gracefully.
 	Quit

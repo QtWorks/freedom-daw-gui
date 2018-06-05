@@ -106,11 +106,15 @@ void Controller::OnCommand(const Command &command) {
 		break;
 	case CommandType::Play:
 		break;
+	case CommandType::Redo:
+		break;
 	case CommandType::RecordStart:
 		break;
 	case CommandType::RecordStop:
 		break;
 	case CommandType::Seek:
+		break;
+	case CommandType::Undo:
 		break;
 	case CommandType::Quit:
 		driver->Close();

@@ -15,41 +15,40 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "menu-bar.hpp"
-
 #include "edit-menu.hpp"
-#include "file-menu.hpp"
-#include "help-menu.hpp"
-#include "track-menu.hpp"
+
+#include "redo-command.hpp"
+#include "undo-command.hpp"
 
 namespace freedom_daw {
 
-MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent) {
+EditMenu::EditMenu(QWidget *parent) : QMenu(parent) {
 
-	editMenu = new EditMenu(this);
-	fileMenu = new FileMenu(this);
-	helpMenu = new HelpMenu(this);
-	trackMenu = new TrackMenu(this);
+	undo = addAction(tr("Undo"));
+	redo = addAction(tr("Redo"));
 
-	connect(editMenu, &EditMenu::NewCommand, this, &MenuBar::OnCommand);
-	connect(fileMenu, &FileMenu::NewCommand, this, &MenuBar::OnCommand);
-	connect(trackMenu, &TrackMenu::NewCommand, this, &MenuBar::OnCommand);
+	connect(undo, &QAction::triggered, this, &EditMenu::OnUndoTriggered);
+	connect(redo, &QAction::triggered, this, &EditMenu::OnRedoTriggered);
 
-	addMenu(fileMenu);
-	addMenu(editMenu);
-
-	viewMenu = addMenu("View");
-
-	addMenu(trackMenu);
-	addMenu(helpMenu);
+	setTitle(tr("Edit"));
 }
 
-MenuBar::~MenuBar() {
+EditMenu::~EditMenu() {
 
 }
 
-void MenuBar::OnCommand(const Command &command) {
-	emit NewCommand(command);
+void EditMenu::OnRedoTriggered() {
+
+	RedoCommand redoCommand;
+
+	emit NewCommand(redoCommand);
+}
+
+void EditMenu::OnUndoTriggered() {
+
+	UndoCommand undoCommand;
+
+	emit NewCommand(undoCommand);
 }
 
 } // namespace freedom_daw

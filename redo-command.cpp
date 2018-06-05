@@ -15,41 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "menu-bar.hpp"
+#include "redo-command.hpp"
 
-#include "edit-menu.hpp"
-#include "file-menu.hpp"
-#include "help-menu.hpp"
-#include "track-menu.hpp"
+#include <QJsonObject>
 
 namespace freedom_daw {
 
-MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent) {
-
-	editMenu = new EditMenu(this);
-	fileMenu = new FileMenu(this);
-	helpMenu = new HelpMenu(this);
-	trackMenu = new TrackMenu(this);
-
-	connect(editMenu, &EditMenu::NewCommand, this, &MenuBar::OnCommand);
-	connect(fileMenu, &FileMenu::NewCommand, this, &MenuBar::OnCommand);
-	connect(trackMenu, &TrackMenu::NewCommand, this, &MenuBar::OnCommand);
-
-	addMenu(fileMenu);
-	addMenu(editMenu);
-
-	viewMenu = addMenu("View");
-
-	addMenu(trackMenu);
-	addMenu(helpMenu);
-}
-
-MenuBar::~MenuBar() {
+RedoCommand::RedoCommand() noexcept {
 
 }
 
-void MenuBar::OnCommand(const Command &command) {
-	emit NewCommand(command);
+RedoCommand::~RedoCommand() {
+
+}
+
+CommandType RedoCommand::GetType() const noexcept {
+	return CommandType::Redo;
+}
+
+void RedoCommand::Write(QJsonObject &jsonObject) const {
+	jsonObject["command"] = "redo";
 }
 
 } // namespace freedom_daw

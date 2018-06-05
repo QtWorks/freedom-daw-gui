@@ -15,41 +15,28 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "menu-bar.hpp"
+#ifndef FREEDOM_DAW_UNDO_COMMAND_HPP
+#define FREEDOM_DAW_UNDO_COMMAND_HPP
 
-#include "edit-menu.hpp"
-#include "file-menu.hpp"
-#include "help-menu.hpp"
-#include "track-menu.hpp"
+#include "command.hpp"
 
 namespace freedom_daw {
 
-MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent) {
-
-	editMenu = new EditMenu(this);
-	fileMenu = new FileMenu(this);
-	helpMenu = new HelpMenu(this);
-	trackMenu = new TrackMenu(this);
-
-	connect(editMenu, &EditMenu::NewCommand, this, &MenuBar::OnCommand);
-	connect(fileMenu, &FileMenu::NewCommand, this, &MenuBar::OnCommand);
-	connect(trackMenu, &TrackMenu::NewCommand, this, &MenuBar::OnCommand);
-
-	addMenu(fileMenu);
-	addMenu(editMenu);
-
-	viewMenu = addMenu("View");
-
-	addMenu(trackMenu);
-	addMenu(helpMenu);
-}
-
-MenuBar::~MenuBar() {
-
-}
-
-void MenuBar::OnCommand(const Command &command) {
-	emit NewCommand(command);
-}
+/// Used to undo the last command.
+class UndoCommand final : public Command {
+public:
+	/// Default constructor.
+	UndoCommand() noexcept;
+	/// Default deconstructor.
+	~UndoCommand();
+	/// Gets the command type.
+	/// @returns This function always returns @ref CommandType::Undo.
+	CommandType GetType() const noexcept override;
+	/// Writes the undo command to a JSON object.
+	/// @param jsonObject The JSON object to write to.
+	void Write(QJsonObject &jsonObject) const override;
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_UNDO_COMMAND_HPP
