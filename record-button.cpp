@@ -17,8 +17,7 @@
 
 #include "record-button.hpp"
 
-#include "record-start-command.hpp"
-#include "record-stop-command.hpp"
+#include "record-command.hpp"
 
 #include <QGraphicsBlurEffect>
 #include <QPainter>
@@ -50,11 +49,10 @@ void RecordButton::SetCircleColor(const QColor &color) {
 
 void RecordButton::OnToggled(bool state) {
 	if (state) {
-		RecordStartCommand recordStartCommand;
-		emit NewCommand(recordStartCommand);
+		RecordCommand recordCommand;
+		emit NewCommand(recordCommand);
 	} else {
-		RecordStopCommand recordStopCommand;
-		emit NewCommand(recordStopCommand);
+		// TODO
 	}
 }
 

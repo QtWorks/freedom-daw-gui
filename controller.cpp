@@ -108,9 +108,7 @@ void Controller::OnCommand(const Command &command) {
 		break;
 	case CommandType::Redo:
 		break;
-	case CommandType::RecordStart:
-		break;
-	case CommandType::RecordStop:
+	case CommandType::Record:
 		break;
 	case CommandType::Seek:
 		break;

@@ -42,10 +42,8 @@ enum class CommandType {
 	/// Used to redo something that
 	/// was undone.
 	Redo,
-	/// Used to start recording.
-	RecordStart,
-	/// Used to stop recording.
-	RecordStop,
+	/// Used to start recording audio.
+	Record,
 	/// Used to move the audio head.
 	Seek,
 	/// Used to undo the last command.

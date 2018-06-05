@@ -15,26 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "record-start-command.hpp"
+#ifndef FREEDOM_DAW_RECORD_COMMAND_HPP
+#define FREEDOM_DAW_RECORD_COMMAND_HPP
 
-#include <QJsonObject>
+#include "command.hpp"
 
 namespace freedom_daw {
 
-RecordStartCommand::RecordStartCommand() {
-
-}
-
-RecordStartCommand::~RecordStartCommand() {
-
-}
-
-CommandType RecordStartCommand::GetType() const noexcept {
-	return CommandType::RecordStart;
-}
-
-void RecordStartCommand::Write(QJsonObject &jsonObject) const {
-	jsonObject["command"] = "record-start";
-}
+class RecordCommand final : public Command {
+public:
+	RecordCommand();
+	~RecordCommand();
+	CommandType GetType() const noexcept override;
+	void Write(QJsonObject &jsonObject) const override;
+};
 
 } // namespace freedom_daw
+
+#endif // FREEDOM_DAW_RECORD_COMMAND_HPP
