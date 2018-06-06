@@ -33,3 +33,7 @@ freedom_daw--TrackBody {
 freedom_daw--RecordButton {
 	background-color: black;
 }
+
+freedom_daw--Timeline {
+	background-color: "#666b62";
+}

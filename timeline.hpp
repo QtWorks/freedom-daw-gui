@@ -18,14 +18,14 @@
 #ifndef FREEDOM_DAW_TIMELINE_HPP
 #define FREEDOM_DAW_TIMELINE_HPP
 
-#include <QWidget>
+#include <QFrame>
 
 namespace freedom_daw {
 
 /// Presents to the user the timeline of the
 /// mix as well as various markers and a cursor
 /// indicator.
-class Timeline final : public QWidget {
+class Timeline final : public QFrame {
 	Q_OBJECT
 public:
 	/// Default constructor.
@@ -34,6 +34,11 @@ public:
 	Timeline(QWidget *parent = nullptr);
 	/// Default deconstructor.
 	~Timeline();
+	/// Returns the minimum suggested size of
+	/// the timeline widget.
+	/// @returns The minimum suggested size of
+	/// the timeline widget.
+	QSize minimumSizeHint() const override;
 protected:
 	/// Override the paint event for the
 	/// widget, so that the notches can be

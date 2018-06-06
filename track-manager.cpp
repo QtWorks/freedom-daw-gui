@@ -17,6 +17,7 @@
 
 #include "track-manager.hpp"
 
+#include "timeline.hpp"
 #include "track.hpp"
 
 #include <QVBoxLayout>
@@ -24,7 +25,12 @@
 namespace freedom_daw {
 
 TrackManager::TrackManager(QWidget *parent) : QWidget(parent) {
+
+	timeline = new Timeline(this);
+
 	layout = new QVBoxLayout(this);
+	layout->addWidget(timeline);
+
 	setLayout(layout);
 	setObjectName("TrackManager");
 }

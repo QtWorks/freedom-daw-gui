@@ -17,18 +17,36 @@
 
 #include "timeline.hpp"
 
+#include <QLabel>
+#include <QPainter>
+
 namespace freedom_daw {
 
-Timeline::Timeline(QWidget *parent) : QWidget(parent) {
-
+Timeline::Timeline(QWidget *parent) : QFrame(parent) {
+	setSizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
 }
 
 Timeline::~Timeline() {
 
 }
 
+QSize Timeline::minimumSizeHint() const {
+	return QSize(50, 50);
+}
+
 void Timeline::paintEvent(QPaintEvent *) {
 
+	QPainter painter;
+	painter.begin(this);
+
+	for (auto i = 0; i < width(); i += 200) {
+		painter.drawLine(i, height(), i, height() / 2);
+		painter.drawLine(i + 50, height(), i + 50, (height() * 3)/ 4);
+		painter.drawLine(i + 100, height(), i + 100, (height() * 3)/ 4);
+		painter.drawLine(i + 150, height(), i + 150, (height() * 3) / 4);
+	}
+
+	painter.end();
 }
 
 } // namespace freedom_daw

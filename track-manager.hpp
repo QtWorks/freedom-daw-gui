@@ -25,6 +25,7 @@ class QVBoxLayout;
 
 namespace freedom_daw {
 
+class Timeline;
 class Track;
 
 class TrackManager final : public QWidget {
@@ -48,6 +49,8 @@ public:
 	void RenameTrack(unsigned int trackID,
 	                 const QString &name);
 private:
+	/// The project timeline.
+	Timeline *timeline;
 	/// Contains the list of tracks managed
 	/// by the track manager.
 	QList<Track*> tracks;
