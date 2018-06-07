@@ -90,6 +90,8 @@ add_executable("freedom-daw"
 	"track-manager.cpp"
 	"undo-command.hpp"
 	"undo-command.cpp"
+	"view-menu.hpp"
+	"view-menu.cpp"
 	"quit-command.hpp"
 	"quit-command.cpp")
 

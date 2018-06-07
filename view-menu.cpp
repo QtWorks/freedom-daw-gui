@@ -15,41 +15,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Freedom DAW. If not, see <http://www.gnu.org/licenses/>.
 
-#include "menu-bar.hpp"
-
-#include "edit-menu.hpp"
-#include "file-menu.hpp"
-#include "help-menu.hpp"
-#include "track-menu.hpp"
 #include "view-menu.hpp"
 
 namespace freedom_daw {
 
-MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent) {
+ViewMenu::ViewMenu(QWidget *parent) : QMenu(parent) {
 
-	editMenu = new EditMenu(this);
-	fileMenu = new FileMenu(this);
-	helpMenu = new HelpMenu(this);
-	trackMenu = new TrackMenu(this);
-	viewMenu = new ViewMenu(this);
+	fullScreen = addAction(tr("Full Screen"));
 
-	connect(editMenu, &EditMenu::NewCommand, this, &MenuBar::OnCommand);
-	connect(fileMenu, &FileMenu::NewCommand, this, &MenuBar::OnCommand);
-	connect(trackMenu, &TrackMenu::NewCommand, this, &MenuBar::OnCommand);
-
-	addMenu(fileMenu);
-	addMenu(editMenu);
-	addMenu(viewMenu);
-	addMenu(trackMenu);
-	addMenu(helpMenu);
+	setTitle(tr("View"));
 }
 
-MenuBar::~MenuBar() {
+ViewMenu::~ViewMenu() {
 
-}
-
-void MenuBar::OnCommand(const Command &command) {
-	emit NewCommand(command);
 }
 
 } // namespace freedom_daw

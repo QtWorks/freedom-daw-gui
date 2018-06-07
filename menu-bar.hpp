@@ -20,8 +20,6 @@
 
 #include <QMenuBar>
 
-class QMenu;
-
 namespace freedom_daw {
 
 class Command;
@@ -29,6 +27,7 @@ class EditMenu;
 class FileMenu;
 class HelpMenu;
 class TrackMenu;
+class ViewMenu;
 
 class MenuBar final : public QMenuBar {
 	Q_OBJECT
@@ -41,10 +40,10 @@ public slots:
 	void OnCommand(const Command &command);
 private:
 	EditMenu *editMenu;
-	QMenu *viewMenu;
 	FileMenu *fileMenu;
 	HelpMenu *helpMenu;
 	TrackMenu *trackMenu;
+	ViewMenu *viewMenu;
 };
 
 } // namespace freedom_daw
