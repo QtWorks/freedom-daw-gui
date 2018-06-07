@@ -60,6 +60,7 @@ void PlayButton::paintEvent(QPaintEvent *event) {
 	AudioButton::paintEvent(event);
 
 	auto legSize = std::min(width(), height());
+	legSize = (legSize * 3) / 4;
 
 	double triangleHeight = static_cast<double>(legSize) * (std::sqrt(3.0) / 2.0);
 

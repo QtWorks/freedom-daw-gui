@@ -39,6 +39,7 @@ TrackHeader::TrackHeader(QWidget *parent) : QFrame(parent) {
 	layout->addWidget(panningKnob, 0, 1, 1, 1);
 	layout->addWidget(volumeKnob,  0, 2, 1, 1);
 
+	setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
 TrackHeader::~TrackHeader() {

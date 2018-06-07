@@ -20,6 +20,7 @@
 
 #include <QWidget>
 
+class QJsonObject;
 class QGridLayout;
 
 namespace freedom_daw {
@@ -43,6 +44,10 @@ public:
 	/// @param trackID The ID of the newly
 	/// created track.
 	void AddTrack(unsigned int trackID);
+	/// Imports a color scheme from a JSON object.
+	/// @param scheme The JSON object to import
+	/// the color scheme from.
+	void ImportScheme(const QJsonObject &scheme);
 signals:
 	/// Emitted when either the track manager
 	/// or audio panel triggers a new command.

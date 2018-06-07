@@ -58,6 +58,7 @@ void StopButton::paintEvent(QPaintEvent *event) {
 	AudioButton::paintEvent(event);
 
 	auto legSize = std::min(width(), height());
+	legSize = (legSize * 3) / 4;
 	auto xStart = (width() / 2) - (legSize / 2);
 	auto yStart = (height() / 2) - (legSize / 2);
 

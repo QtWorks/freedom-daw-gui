@@ -47,6 +47,8 @@ void PauseButton::paintEvent(QPaintEvent *paintEvent) {
 	QColor lineColor(0, 0, 0, 63);
 
 	auto lineHeight = height();
+	lineHeight = (lineHeight * 3) / 4;
+
 	auto lineWidth = lineHeight / 4;
 
 	auto xCenter = width() / 2;

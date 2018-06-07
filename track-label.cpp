@@ -21,6 +21,7 @@ namespace freedom_daw {
 
 TrackLabel::TrackLabel(QWidget *parent) : QLabel(parent) {
 	setAlignment(Qt::AlignCenter);
+	setStyleSheet("font-weight:bold");
 }
 
 TrackLabel::~TrackLabel() {

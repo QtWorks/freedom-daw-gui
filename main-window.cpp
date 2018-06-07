@@ -20,6 +20,8 @@
 #include "central-widget.hpp"
 #include "menu-bar.hpp"
 
+#include <QJsonObject>
+
 namespace freedom_daw {
 
 MainWindow::MainWindow() {
@@ -42,6 +44,11 @@ MainWindow::~MainWindow() {
 
 void MainWindow::AddTrack(unsigned int trackID) {
 	centralWidget->AddTrack(trackID);
+}
+
+void MainWindow::ImportScheme(const QJsonObject &scheme) {
+
+	centralWidget->ImportScheme(scheme["central-widget"].toObject());
 }
 
 void MainWindow::OnCommand(const Command &command) {

@@ -18,9 +18,10 @@
 #include "track-manager.hpp"
 
 #include "timeline.hpp"
-#include "track.hpp"
+#include "track-body.hpp"
+#include "track-header.hpp"
 
-#include <QVBoxLayout>
+#include <QGridLayout>
 
 namespace freedom_daw {
 
@@ -28,11 +29,11 @@ TrackManager::TrackManager(QWidget *parent) : QWidget(parent) {
 
 	timeline = new Timeline(this);
 
-	layout = new QVBoxLayout(this);
-	layout->addWidget(timeline);
+	layout = new QGridLayout(this);
+	layout->setAlignment(Qt::AlignTop);
+	layout->addWidget(timeline, 0, 1, 1, 1);
 
 	setLayout(layout);
-	setObjectName("TrackManager");
 }
 
 TrackManager::~TrackManager() {
@@ -41,24 +42,33 @@ TrackManager::~TrackManager() {
 
 void TrackManager::AddTrack(unsigned int trackID) {
 
-	auto track = new Track(this);
-	track->SetID(trackID);
-	track->SetName("Untitled");
-	track->show();
+	// TODO : handle track ID
+	(void) trackID;
 
-	tracks.push_back(track);
+	auto trackHeader = new TrackHeader(this);
+	trackHeader->SetName(tr("Untitled"));
+	trackHeaders.push_back(trackHeader);
 
-	layout->addWidget(track, 0, Qt::AlignTop);
+	auto trackBody = new TrackBody(this);
+	trackBodies.push_back(trackBody);
+
+	// widget, row index, column index, row count, column count
+	layout->addWidget(trackHeader, trackHeaders.size(), 0, 1, 1);
+	layout->addWidget(trackBody, trackBodies.size(), 1, 1, 1);
 }
 
 void TrackManager::RenameTrack(unsigned int trackID,
                                const QString &name) {
+	(void) trackID;
+	(void) name;
+#if 0
 	for (auto track : tracks) {
 		if (track->GetID() == trackID) {
 			track->SetName(name);
 			break;
 		}
 	}
+#endif
 }
 
 } // namespace freedom_daw

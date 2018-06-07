@@ -39,23 +39,26 @@ public:
 	Controller(QObject *parent = nullptr);
 	/// Default deconstructor.
 	~Controller();
-	/// Shows the main window.
-	void ShowMainWindow();
+	/// Issues a command to the audio driver that
+	/// it can exit gracefully.
+	void CloseDriver();
+	/// Load a color scheme.
+	/// @param path The path to the color scheme.
+	void LoadScheme(const QString &path);
 	/// Resizes the main window, to a specified
 	/// width and height.
 	/// @param width The new width of the window.
 	/// @param height The new height of the window.
 	void ResizeMainWindow(int width, int height);
-	/// Use the standard input and output driver.
-	void UseStdioDriver();
+	/// Shows the main window.
+	void ShowMainWindow();
 	/// Use the process driver, using the standard
 	/// input and output of the process to communicate
 	/// with the driver.
 	/// @param path The path to the program to start.
 	void UseProcessDriver(const QString &path);
-	/// Issues a command to the audio driver that
-	/// it can exit gracefully.
-	void CloseDriver();
+	/// Use the standard input and output driver.
+	void UseStdioDriver();
 public slots:
 	/// Called when the graphical interface issues
 	/// a command to the audio driver.

@@ -20,6 +20,8 @@
 
 #include <QMainWindow>
 
+class QJsonObject;
+
 namespace freedom_daw {
 
 class CentralWidget;
@@ -39,6 +41,10 @@ public:
 	/// @param trackID The track ID to assign
 	/// the new track.
 	void AddTrack(unsigned int trackID);
+	/// Import a color scheme from a JSON object.
+	/// @parma scheme The JSON object to import
+	/// the color scheme from.
+	void ImportScheme(const QJsonObject &scheme);
 public slots:
 	/// Called when a new command is dispatched
 	/// from a button or menu item.

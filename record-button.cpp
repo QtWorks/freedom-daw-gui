@@ -79,6 +79,7 @@ void RecordButton::paintEvent(QPaintEvent *paintEvent) {
 
 	// Draw the inner circle.
 	auto radius = std::min(height(), width()) / 2;
+	radius = (radius * 3) / 4;
 	auto xSize = radius * 2;
 	auto ySize = radius * 2;
 	auto xOffset = (width() / 2) - (xSize / 2);

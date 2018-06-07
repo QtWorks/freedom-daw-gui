@@ -20,7 +20,7 @@
 namespace freedom_daw {
 
 TrackBody::TrackBody(QWidget *parent) : QFrame(parent) {
-
+	setStyleSheet("background-color: rgba(0, 0, 0, 32)");
 }
 
 TrackBody::~TrackBody() {

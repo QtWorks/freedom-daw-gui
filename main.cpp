@@ -29,16 +29,6 @@
 
 namespace {
 
-int LoadStyleSheet(QApplication &app, const QString &path) {
-
-	QFile file(path);
-	file.open(QIODevice::ReadOnly);
-	QString styleSheet(file.readAll());
-	app.setStyleSheet(styleSheet);
-
-	return 0;
-}
-
 int SetupWindowView(QApplication &app, freedom_daw::Controller &controller) {
 
 	auto screenRect = app.desktop()->screenGeometry();
@@ -52,8 +42,6 @@ int SetupWindowView(QApplication &app, freedom_daw::Controller &controller) {
 int Main(int argc, char **argv) {
 
 	QApplication app(argc, argv);
-
-	LoadStyleSheet(app, "://stylesheets/default.qss");
 
 	freedom_daw::Controller controller;
 

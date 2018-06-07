@@ -31,7 +31,7 @@ AudioButton::~AudioButton() {
 }
 
 QSize AudioButton::minimumSizeHint() const {
-	return QSize(50, 50);
+	return QSize(100, 50);
 }
 
 void AudioButton::paintEvent(QPaintEvent *paintEvent) {

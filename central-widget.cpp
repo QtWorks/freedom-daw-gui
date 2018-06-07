@@ -51,6 +51,10 @@ void CentralWidget::AddTrack(unsigned int trackID) {
 	trackManager->AddTrack(trackID);
 }
 
+void CentralWidget::ImportScheme(const QJsonObject &) {
+
+}
+
 void CentralWidget::OnCommand(const Command &command) {
 	emit NewCommand(command);
 }

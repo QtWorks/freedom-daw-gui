@@ -27,6 +27,10 @@
 #include "quit-command.hpp"
 
 #include <QErrorMessage>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QString>
 
 namespace freedom_daw {
 
@@ -55,20 +59,28 @@ void Controller::CloseDriver() {
 	OnCommand(quitCommand);
 }
 
+void Controller::LoadScheme(const QString &path) {
+
+	QFile file(path);
+	file.open(QIODevice::ReadOnly |  QIODevice::Text);
+
+	QString fileSource = file.readAll();
+
+	file.close();
+
+	QJsonDocument jsonDocument = QJsonDocument::fromJson(fileSource.toUtf8());
+
+	auto scheme = jsonDocument.object();
+
+	mainWindow->ImportScheme(scheme);
+}
+
 void Controller::ResizeMainWindow(int width, int height) {
 	mainWindow->resize(width, height);
 }
 
 void Controller::ShowMainWindow() {
 	mainWindow->show();
-}
-
-void Controller::UseStdioDriver() {
-
-	if (driver != nullptr)
-		delete driver;
-
-	driver = new StdioDriver();
 }
 
 void Controller::UseProcessDriver(const QString &path) {
@@ -81,6 +93,14 @@ void Controller::UseProcessDriver(const QString &path) {
 	processDriver->Start(path);
 
 	driver = processDriver;
+}
+
+void Controller::UseStdioDriver() {
+
+	if (driver != nullptr)
+		delete driver;
+
+	driver = new StdioDriver();
 }
 
 void Controller::OnCommand(const Command &command) {

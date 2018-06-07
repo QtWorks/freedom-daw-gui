@@ -21,12 +21,13 @@
 #include <QWidget>
 #include <QList>
 
-class QVBoxLayout;
+class QGridLayout;
 
 namespace freedom_daw {
 
 class Timeline;
-class Track;
+class TrackBody;
+class TrackHeader;
 
 class TrackManager final : public QWidget {
 	Q_OBJECT
@@ -51,11 +52,12 @@ public:
 private:
 	/// The project timeline.
 	Timeline *timeline;
-	/// Contains the list of tracks managed
-	/// by the track manager.
-	QList<Track*> tracks;
-	/// The vertical layouts for the tracks.
-	QVBoxLayout *layout;
+	/// Contains the track headers for the project.
+	QList<TrackHeader*> trackHeaders;
+	/// Contains the track bodies for the project.
+	QList<TrackBody*> trackBodies;
+	/// Organizes the track widgets and the timeline.
+	QGridLayout *layout;
 };
 
 } // namespace freedom_daw

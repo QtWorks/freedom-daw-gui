@@ -23,15 +23,23 @@
 #include "stop-button.hpp"
 
 #include <QGridLayout>
+#include <QHBoxLayout>
 
 namespace freedom_daw {
 
 AudioPanel::AudioPanel(QWidget *parent) : QFrame(parent) {
 
 	pauseButton = new PauseButton(this);
+	pauseButton->setSizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+
 	playButton = new PlayButton(this);
+	playButton->setSizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+
 	recordButton = new RecordButton(this);
+	recordButton->setSizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+
 	stopButton = new StopButton(this);
+	stopButton->setSizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
 
 	connect(playButton, &PlayButton::NewCommand, this, &AudioPanel::OnCommand);
 	connect(recordButton, &RecordButton::NewCommand, this, &AudioPanel::OnCommand);
@@ -39,12 +47,16 @@ AudioPanel::AudioPanel(QWidget *parent) : QFrame(parent) {
 	connect(stopButton, &StopButton::Stopped, this, &AudioPanel::OnCommand);
 
 	layout = new QGridLayout(this);
-	layout->setSpacing(0);
-	layout->setMargin(0);
-	layout->addWidget(playButton,   0, 0, 1, 1);
-	layout->addWidget(recordButton, 0, 1, 1, 1);
-	layout->addWidget(pauseButton,  0, 2, 1, 1);
-	layout->addWidget(stopButton,   0, 3, 1, 1);
+	setLayout(layout);
+
+	QHBoxLayout *buttonLayout = new QHBoxLayout();
+	buttonLayout->setSpacing(0);
+	buttonLayout->addWidget(playButton);
+	buttonLayout->addWidget(recordButton);
+	buttonLayout->addWidget(pauseButton);
+	buttonLayout->addWidget(stopButton);
+
+	layout->addLayout(buttonLayout, 0, 0, 1, 1);
 }
 
 AudioPanel::~AudioPanel() {
