@@ -54,6 +54,9 @@ private:
 	QAction *redo;
 	/// The "Undo" button.
 	QAction *undo;
+	/// The "Preferences" button.
+	/// Opens up a preferences dialog.
+	QAction *preferences;
 };
 
 } // namespace freedom_daw

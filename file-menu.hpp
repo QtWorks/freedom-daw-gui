@@ -59,6 +59,8 @@ private:
 	QAction *newProject;
 	/// Used for opening an existing project.
 	QAction *openProject;
+	/// Export the project as a single file.
+	QAction *exportAs;
 };
 
 } // namespace freedom_daw

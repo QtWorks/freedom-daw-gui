@@ -28,6 +28,7 @@ FileMenu::FileMenu(QWidget *parent) : QMenu(parent) {
 	newProject = addAction(tr("New"));
 	closeProject = addAction(tr("Close"));
 	openProject = addAction(tr("Open"));
+	exportAs = addAction(tr("Export As"));
 
 	connect(closeProject, &QAction::triggered, this, &FileMenu::OnCloseTriggered);
 	connect(newProject, &QAction::triggered, this, &FileMenu::OnNewTriggered);

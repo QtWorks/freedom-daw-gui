@@ -26,6 +26,7 @@ EditMenu::EditMenu(QWidget *parent) : QMenu(parent) {
 
 	undo = addAction(tr("Undo"));
 	redo = addAction(tr("Redo"));
+	preferences = addAction(tr("Preferences"));
 
 	connect(undo, &QAction::triggered, this, &EditMenu::OnUndoTriggered);
 	connect(redo, &QAction::triggered, this, &EditMenu::OnRedoTriggered);
