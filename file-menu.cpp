@@ -26,8 +26,15 @@ namespace freedom_daw {
 FileMenu::FileMenu(QWidget *parent) : QMenu(parent) {
 
 	newProject = addAction(tr("New"));
+	newProject->setShortcut(Qt::Key_N | Qt::CTRL);
+
 	closeProject = addAction(tr("Close"));
+
 	openProject = addAction(tr("Open"));
+	openProject->setShortcut(Qt::Key_O | Qt::CTRL);
+
+	properties = addAction(tr("Properties"));
+
 	exportAs = addAction(tr("Export As"));
 
 	connect(closeProject, &QAction::triggered, this, &FileMenu::OnCloseTriggered);

@@ -22,6 +22,7 @@ namespace freedom_daw {
 ViewMenu::ViewMenu(QWidget *parent) : QMenu(parent) {
 
 	fullScreen = addAction(tr("Full Screen"));
+	fullScreen->setShortcut(Qt::Key_F11);
 
 	setTitle(tr("View"));
 }

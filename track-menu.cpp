@@ -24,9 +24,12 @@ namespace freedom_daw {
 TrackMenu::TrackMenu(QWidget *parent) : QMenu(parent) {
 
 	addTrack = addAction(tr("New Track"));
+	addTrack->setShortcut(Qt::Key_N | Qt::SHIFT | Qt::CTRL);
+
 	connect(addTrack, &QAction::triggered, this, &TrackMenu::OnNewTrackClicked);
 
 	removeTrack = addAction(tr("Delete Track"));
+	removeTrack->setShortcut(Qt::Key_D | Qt::SHIFT | Qt::CTRL);
 
 	setTitle(tr("Track"));
 }

@@ -59,6 +59,8 @@ private:
 	QAction *newProject;
 	/// Used for opening an existing project.
 	QAction *openProject;
+	/// Used for modifying the project properties.
+	QAction *properties;
 	/// Export the project as a single file.
 	QAction *exportAs;
 };

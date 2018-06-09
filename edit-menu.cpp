@@ -25,7 +25,11 @@ namespace freedom_daw {
 EditMenu::EditMenu(QWidget *parent) : QMenu(parent) {
 
 	undo = addAction(tr("Undo"));
+	undo->setShortcut(Qt::Key_Z | Qt::CTRL);
+
 	redo = addAction(tr("Redo"));
+	redo->setShortcut(Qt::Key_Z | Qt::SHIFT | Qt::CTRL);
+
 	preferences = addAction(tr("Preferences"));
 
 	connect(undo, &QAction::triggered, this, &EditMenu::OnUndoTriggered);
