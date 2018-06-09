@@ -18,6 +18,7 @@
 #include "track-manager.hpp"
 
 #include "timeline.hpp"
+#include "track.hpp"
 #include "track-body.hpp"
 #include "track-header.hpp"
 
@@ -42,33 +43,29 @@ TrackManager::~TrackManager() {
 
 void TrackManager::AddTrack(unsigned int trackID) {
 
-	// TODO : handle track ID
-	(void) trackID;
+	auto track = new Track(this);
+	track->SetID(trackID);
 
-	auto trackHeader = new TrackHeader(this);
-	trackHeader->SetName(tr("Untitled"));
-	trackHeaders.push_back(trackHeader);
-
-	auto trackBody = new TrackBody(this);
-	trackBodies.push_back(trackBody);
+	auto header = track->GetHeader();
+	auto body = track->GetBody();
+	auto index = trackList.size();
 
 	// widget, row index, column index, row count, column count
-	layout->addWidget(trackHeader, trackHeaders.size(), 0, 1, 1);
-	layout->addWidget(trackBody, trackBodies.size(), 1, 1, 1);
+	// the +1 is to go below the timeline
+	layout->addWidget(header, index + 1, 0, 1, 1);
+	layout->addWidget(body,   index + 1, 1, 1, 1);
+
+	trackList.push_back(track);
 }
 
 void TrackManager::RenameTrack(unsigned int trackID,
                                const QString &name) {
-	(void) trackID;
-	(void) name;
-#if 0
-	for (auto track : tracks) {
+	for (auto track : trackList) {
 		if (track->GetID() == trackID) {
 			track->SetName(name);
 			break;
 		}
 	}
-#endif
 }
 
 } // namespace freedom_daw

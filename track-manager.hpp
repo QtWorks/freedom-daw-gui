@@ -26,8 +26,7 @@ class QGridLayout;
 namespace freedom_daw {
 
 class Timeline;
-class TrackBody;
-class TrackHeader;
+class Track;
 
 class TrackManager final : public QWidget {
 	Q_OBJECT
@@ -52,10 +51,9 @@ public:
 private:
 	/// The project timeline.
 	Timeline *timeline;
-	/// Contains the track headers for the project.
-	QList<TrackHeader*> trackHeaders;
-	/// Contains the track bodies for the project.
-	QList<TrackBody*> trackBodies;
+	/// The list of tracks being managed
+	/// by the track manager.
+	QList<Track*> trackList;
 	/// Organizes the track widgets and the timeline.
 	QGridLayout *layout;
 };

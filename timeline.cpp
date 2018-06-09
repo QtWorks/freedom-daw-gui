@@ -18,12 +18,17 @@
 #include "timeline.hpp"
 
 #include <QLabel>
+#include <QMouseEvent>
 #include <QPainter>
+
+#include <iostream>
 
 namespace freedom_daw {
 
 Timeline::Timeline(QWidget *parent) : QFrame(parent) {
+	caretPosition = 0;
 	setSizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
+	setMouseTracking(true);
 }
 
 Timeline::~Timeline() {
@@ -32,6 +37,11 @@ Timeline::~Timeline() {
 
 QSize Timeline::minimumSizeHint() const {
 	return QSize(50, 50);
+}
+
+void Timeline::mouseMoveEvent(QMouseEvent *mouseEvent) {
+	caretPosition = mouseEvent->pos().x();
+	update(0, 0, width(), height());
 }
 
 void Timeline::paintEvent(QPaintEvent *) {
@@ -45,6 +55,13 @@ void Timeline::paintEvent(QPaintEvent *) {
 		painter.drawLine(i + 100, height(), i + 100, (height() * 3)/ 4);
 		painter.drawLine(i + 150, height(), i + 150, (height() * 3) / 4);
 	}
+
+	if (caretPosition > width())
+		caretPosition = width();
+	else if (caretPosition < 0)
+		caretPosition = 0;
+
+	painter.drawLine(caretPosition, height(), caretPosition, 0);
 
 	painter.end();
 }

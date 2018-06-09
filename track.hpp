@@ -42,6 +42,12 @@ public:
 	/// Gets the ID of the track.
 	/// @returns The ID of the track.
 	unsigned int GetID() const noexcept;
+	/// Gets the instance of the track header.
+	/// @returns A pointer to the track header.
+	TrackHeader *GetHeader() noexcept;
+	/// Gets the instance of the track body.
+	/// @returns A pointer to the track body.
+	TrackBody *GetBody() noexcept;
 protected:
 	/// The track manager is responsible for
 	/// creating the track and managing its lifetime.

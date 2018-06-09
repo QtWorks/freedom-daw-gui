@@ -44,6 +44,13 @@ protected:
 	/// widget, so that the notches can be
 	/// drawn on the timeline.
 	void paintEvent(QPaintEvent *paintEvent) override;
+	/// Override the mount event so that
+	/// the caret position can be updated.
+	void mouseMoveEvent(QMouseEvent *mouseEvent) override;
+private:
+	/// The position of the vertical caret
+	/// shown in the timeline bar.
+	int caretPosition;
 };
 
 } // namespace freedom_daw

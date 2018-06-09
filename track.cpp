@@ -42,6 +42,14 @@ Track::~Track() {
 
 }
 
+TrackBody *Track::GetBody() noexcept {
+	return body;
+}
+
+TrackHeader *Track::GetHeader() noexcept {
+	return header;
+}
+
 unsigned int Track::GetID() const noexcept {
 	return id;
 }
