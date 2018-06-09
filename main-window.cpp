@@ -35,7 +35,7 @@ MainWindow::MainWindow() {
 	connect(menuBar, &MenuBar::NewCommand, this, &MainWindow::OnCommand);
 	connect(centralWidget, &CentralWidget::NewCommand, this, &MainWindow::OnCommand);
 
-	setWindowTitle(tr("Music Recorder"));
+	setWindowTitle(tr("Freedom DAW"));
 }
 
 MainWindow::~MainWindow() {
